@@ -41,16 +41,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <TextView
-
-        android:hint="BMI"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:layout_above="@+id/submit"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="29dp" />
-
     <EditText
         android:hint="Height"
         android:layout_width="wrap_content"
@@ -72,4 +62,19 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="41dp"
         android:id="@+id/editText6" />
+
+    <TextView
+
+        android:hint="BMI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_above="@+id/submit"
+        android:layout_alignLeft="@+id/submit"
+        android:layout_alignStart="@+id/submit"
+        android:layout_marginBottom="35dp"
+        android:layout_alignRight="@+id/submit"
+        android:layout_alignEnd="@+id/submit"
+        android:textSize="24sp"
+        android:textAlignment="textStart" />
 </RelativeLayout>

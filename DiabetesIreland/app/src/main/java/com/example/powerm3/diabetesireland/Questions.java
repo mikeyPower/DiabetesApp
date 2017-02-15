@@ -15,7 +15,7 @@ public class Questions extends AppCompatActivity {
     EditText age;
     EditText height;
     EditText weight;
-    TextView mText;
+    TextView bmiLabel;
     final Context context = this;
     int bmi =1;
     int h =1;
@@ -29,6 +29,22 @@ public class Questions extends AppCompatActivity {
        age = (EditText) findViewById(R.id.editText2);
         height = (EditText) findViewById(R.id.editText5);
        weight = (EditText) findViewById(R.id.editText6);
+        bmiLabel = (TextView) findViewById(R.id.textView2);
+
+        weight.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+            public void onFocusChange(View arg0,boolean arg1){
+                String formatted = String.format("%.1f",calculateBMI(weight.getText().toString(),height.getText().toString()));
+                bmiLabel.setText("BMI: " + formatted);
+            }
+        });
+
+        height.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+            public void onFocusChange(View arg0,boolean arg1){
+                String formatted = String.format("%.1f",calculateBMI(weight.getText().toString(),height.getText().toString()));
+                bmiLabel.setText("BMI: " + formatted);
+            }
+        });
+
 
 
         final Button button = (Button) findViewById(R.id.submit);
@@ -40,6 +56,24 @@ public class Questions extends AppCompatActivity {
 
             }
         });
+    }
+
+    public double calculateBMI(String weight,String height){
+
+        try{
+            //System.out.println("Weight = " + weight.toString());
+            //System.out.println("Height = " + height.toString());
+            double w = Double.parseDouble(weight);
+            double h = Double.parseDouble(height);
+            h /= 100;
+            double bmi =  (w/(h*h));
+            return bmi;
+
+        }catch(Exception e){
+
+            return 0;
+        }
+
     }
 
 
