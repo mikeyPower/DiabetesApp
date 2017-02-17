@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.FileOutputStream;
+
 public class Questions extends AppCompatActivity {
 
     EditText name;
@@ -16,6 +18,9 @@ public class Questions extends AppCompatActivity {
     EditText height;
     EditText weight;
     TextView bmiLabel;
+    TextView topMessageLabel;
+    User newUser;
+
     final Context context = this;
     int bmi =1;
     int h =1;
@@ -25,11 +30,12 @@ public class Questions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
 
-       name = (EditText) findViewById(R.id.editText);
-       age = (EditText) findViewById(R.id.editText2);
+        name = (EditText) findViewById(R.id.editText);
+        age = (EditText) findViewById(R.id.editText2);
         height = (EditText) findViewById(R.id.editText5);
-       weight = (EditText) findViewById(R.id.editText6);
+        weight = (EditText) findViewById(R.id.editText6);
         bmiLabel = (TextView) findViewById(R.id.textView2);
+        topMessageLabel = (TextView) findViewById(R.id.topTextLabel);
 
         weight.setOnFocusChangeListener(new View.OnFocusChangeListener(){
             public void onFocusChange(View arg0,boolean arg1){
@@ -51,14 +57,24 @@ public class Questions extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                Intent intent = new Intent(context, Registration.class);
-                startActivity(intent);
+                EditText data[] = {name,age,height,weight};
+                if(checkIfAllFieldsFilled(data)) {
+                    newUser = new User(name.getText().toString(),Double.parseDouble(age.getText().toString()),Double.parseDouble(height.getText().toString()),Double.parseDouble(weight.getText().toString()));
+                    String FILENAME = "USER_DETAILS";
+
+                    Intent intent = new Intent(context, Registration.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                }else{
+                    topMessageLabel.setText("Error: Please Complete All Fields");
+
+                }
 
             }
         });
     }
 
-    public double calculateBMI(String weight,String height){
+    private double calculateBMI(String weight,String height){
 
         try{
             //System.out.println("Weight = " + weight.toString());
@@ -74,6 +90,22 @@ public class Questions extends AppCompatActivity {
             return 0;
         }
 
+    }
+
+    private boolean checkIfAllFieldsFilled(EditText fields[]){
+        for(int i =0; i < fields.length; i++){
+            if(i > 0){
+                try{
+                    int test = Integer.parseInt(fields[i].getText().toString());
+                }catch(Exception e){
+                    return false;
+                }
+            }
+            if(fields[i].getText().toString().equals("")){
+                return false;
+            }
+        }
+        return true;
     }
 
 

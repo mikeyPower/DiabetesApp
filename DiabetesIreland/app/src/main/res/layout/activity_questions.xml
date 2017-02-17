@@ -10,6 +10,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.powerm3.diabetesireland.Questions">
 
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Name"
+        android:ems="10"
+        android:layout_marginTop="38dp"
+        android:id="@+id/editText"
+        android:layout_centerHorizontal="true" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,15 +33,6 @@
         android:layout_alignLeft="@+id/editText"
         android:layout_alignStart="@+id/editText" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Name"
-        android:ems="10"
-        android:layout_marginTop="38dp"
-        android:id="@+id/editText"
-        android:layout_centerHorizontal="true" />
 
     <Button
         android:text="Submit"
@@ -76,5 +78,18 @@
         android:layout_alignRight="@+id/submit"
         android:layout_alignEnd="@+id/submit"
         android:textSize="24sp"
-        android:textAlignment="textStart" />
+        android:textAlignment="center" />
+
+    <TextView
+        android:text="Enter Your Information To Get Started:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/topTextLabel"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textAlignment="center"
+        android:textSize="18sp" />
 </RelativeLayout>
