@@ -44,17 +44,6 @@
         android:layout_centerHorizontal="true" />
 
     <EditText
-        android:hint="Height"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:layout_below="@+id/editText2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp"
-        android:id="@+id/editText5" />
-
-    <EditText
         android:hint="Weight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -91,5 +80,17 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textAlignment="center"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textColor="#000000"/>
+
+    <EditText
+        android:hint="Height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText5"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/editText6"
+        android:layout_alignStart="@+id/editText6" />
 </RelativeLayout>

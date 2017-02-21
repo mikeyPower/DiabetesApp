@@ -60,13 +60,15 @@ public class Questions extends AppCompatActivity {
                 EditText data[] = {name,age,height,weight};
                 if(checkIfAllFieldsFilled(data)) {
                     newUser = new User(name.getText().toString(),Double.parseDouble(age.getText().toString()),Double.parseDouble(height.getText().toString()),Double.parseDouble(weight.getText().toString()));
-                    String FILENAME = "USER_DETAILS";
 
-                    Intent intent = new Intent(context, Registration.class);
+                    Intent intent = new Intent(context, Home.class);
                     startActivity(intent);
+                    intent.putExtra("userData", newUser);
                     overridePendingTransition(0, 0);
                 }else{
                     topMessageLabel.setText("Error: Please Complete All Fields");
+                    topMessageLabel.setTextColor(0xffff0000);
+
 
                 }
 
@@ -106,6 +108,13 @@ public class Questions extends AppCompatActivity {
             }
         }
         return true;
+    }
+
+    public User getUser(){
+        if(newUser != null) {
+            return newUser;
+        }
+        return null;
     }
 
 

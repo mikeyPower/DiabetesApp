@@ -32,6 +32,7 @@ public class Registration extends AppCompatActivity {
             public void onClick(View arg0) {
 
                 Intent intent = new Intent(context, Questions.class);
+
                 startActivity(intent);
                 overridePendingTransition(0, 0);
 
