@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.io.FileOutputStream;
@@ -18,6 +19,8 @@ public class Questions extends AppCompatActivity {
     EditText height;
     EditText weight;
     TextView bmiLabel;
+    RadioButton maleButton;
+    RadioButton femaleButton;
     TextView topMessageLabel;
     User newUser;
 
@@ -36,6 +39,8 @@ public class Questions extends AppCompatActivity {
         weight = (EditText) findViewById(R.id.editText6);
         bmiLabel = (TextView) findViewById(R.id.textView2);
         topMessageLabel = (TextView) findViewById(R.id.topTextLabel);
+        maleButton = (RadioButton) findViewById(R.id.maleButton);
+        femaleButton = (RadioButton) findViewById(R.id.femaleButton);
 
         weight.setOnFocusChangeListener(new View.OnFocusChangeListener(){
             public void onFocusChange(View arg0,boolean arg1){
@@ -51,7 +56,19 @@ public class Questions extends AppCompatActivity {
             }
         });
 
+        maleButton.setOnClickListener(new View.OnClickListener(){
 
+            public void onClick(View view){
+                femaleButton.setChecked(false);
+            }
+        });
+
+        femaleButton.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View view){
+                maleButton.setChecked(false);
+            }
+        });
 
         final Button button = (Button) findViewById(R.id.submit);
         button.setOnClickListener(new View.OnClickListener() {
