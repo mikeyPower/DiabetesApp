@@ -75,8 +75,8 @@ public class Questions extends AppCompatActivity {
 
             public void onClick(View view) {
                 EditText data[] = {name,age,height,weight};
-                if(true || checkIfAllFieldsFilled(data)) {
-                    //newUser = new User(name.getText().toString(),Double.parseDouble(age.getText().toString()),Double.parseDouble(height.getText().toString()),Double.parseDouble(weight.getText().toString()));
+                if(checkIfAllFieldsFilled(data)) {
+                    newUser = new User(name.getText().toString(),Double.parseDouble(age.getText().toString()),Double.parseDouble(height.getText().toString()),Double.parseDouble(weight.getText().toString()));
 
                     Intent intent = new Intent(context, Home.class);
                     startActivity(intent);
