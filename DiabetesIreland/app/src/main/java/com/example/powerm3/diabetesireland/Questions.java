@@ -44,15 +44,13 @@ public class Questions extends AppCompatActivity {
 
         weight.setOnFocusChangeListener(new View.OnFocusChangeListener(){
             public void onFocusChange(View arg0,boolean arg1){
-                String formatted = String.format("%.1f",calculateBMI(weight.getText().toString(),height.getText().toString()));
-                bmiLabel.setText("BMI: " + formatted);
+                updateBMILabel();
             }
         });
 
         height.setOnFocusChangeListener(new View.OnFocusChangeListener(){
             public void onFocusChange(View arg0,boolean arg1){
-                String formatted = String.format("%.1f",calculateBMI(weight.getText().toString(),height.getText().toString()));
-                bmiLabel.setText("BMI: " + formatted);
+                updateBMILabel();
             }
         });
 
@@ -60,13 +58,16 @@ public class Questions extends AppCompatActivity {
 
             public void onClick(View view){
                 femaleButton.setChecked(false);
+                updateBMILabel();
             }
         });
+
 
         femaleButton.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View view){
                 maleButton.setChecked(false);
+                updateBMILabel();
             }
         });
 
@@ -93,6 +94,10 @@ public class Questions extends AppCompatActivity {
         });
     }
 
+    private void updateBMILabel(){
+        String formatted = String.format("%.1f",calculateBMI(weight.getText().toString(),height.getText().toString()));
+        bmiLabel.setText("BMI: " + formatted);
+    }
     private double calculateBMI(String weight,String height){
 
         try{
@@ -132,6 +137,12 @@ public class Questions extends AppCompatActivity {
             return newUser;
         }
         return null;
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        overridePendingTransition(0,0);
     }
 
 

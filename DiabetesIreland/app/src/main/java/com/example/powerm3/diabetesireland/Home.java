@@ -30,7 +30,7 @@ public class Home extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(context,Information.class);
                 startActivity(intent);
-                
+
                 overridePendingTransition(0, 0);
             }
         });
@@ -38,5 +38,11 @@ public class Home extends AppCompatActivity {
 
         //welcomeLabel.setText("Welcome" + user.getName());
 
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        overridePendingTransition(0,0);
     }
 }
