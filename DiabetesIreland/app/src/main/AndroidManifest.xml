@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Questions" />
-        <activity android:name=".Home"></activity>
+        <activity android:name=".Home" />
+        <activity android:name=".Information"></activity>
     </application>
 
 </manifest>
