@@ -17,7 +17,7 @@ public class Pyramid extends AppCompatActivity {
     TextView pyramid_one,pyramid_two,pyramid_three,pyramid_four,pyramid_five,pyramid_six;
     TextView[] texts;
     int[] ptext;
-
+    int[] maxes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +28,7 @@ public class Pyramid extends AppCompatActivity {
             ptext[i] = 0;
         }
 
+        maxes = new int[] {1,1,2,3,5,7};
         String[] str = {"one","two","three","four","five","six"};
         pyramid_Button_One = (ImageButton) findViewById(R.id.button_pyramid_one);
         pyramid_Button_Two = (ImageButton) findViewById(R.id.button_pyramid_two);
@@ -65,7 +66,11 @@ public class Pyramid extends AppCompatActivity {
     }
 
     private void update_label(int id){
-        int newVal = ++ptext[id];
+        int newVal = ptext[id];
+
+        if(newVal < maxes[id])
+            newVal = ++ptext[id];
+
         texts[id].setText(Integer.toString(newVal));
     }
 
