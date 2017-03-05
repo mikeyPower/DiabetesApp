@@ -2,6 +2,7 @@ package com.example.powerm3.diabetesireland;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,9 +12,9 @@ import android.widget.TextView;
 
 public class Home extends AppCompatActivity {
 
-    TextView welcomeLabel;
+
     User user;
-    ImageButton infoButton;
+    ImageButton infoButton,trackerButton;
     final Context context = this;
 
     @Override
@@ -23,12 +24,26 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         infoButton = (ImageButton) findViewById(R.id.infoButton);
+        trackerButton = (ImageButton) findViewById(R.id.tracker_button);
         user = (User) getIntent().getParcelableExtra("userData");
 
+        //Sets up the information button to transition to the info screen
         infoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context,Information.class);
+                Intent intent = new Intent(context, Information.class);
+                startActivity(intent);
+
+                overridePendingTransition(0, 0);
+            }
+        });
+
+
+        //Sets up the tracker button to transition to the food screen
+        trackerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,Pyramid.class);
                 startActivity(intent);
 
                 overridePendingTransition(0, 0);
@@ -40,9 +55,12 @@ public class Home extends AppCompatActivity {
 
     }
 
+    //This code stops the weird transition effect when the back button is pressed on the phone
+    //Also stops it from going back to the registration questions after first launch
     @Override
     public void onBackPressed(){
-        super.onBackPressed();
+        moveTaskToBack(true);
+
         overridePendingTransition(0,0);
     }
 }

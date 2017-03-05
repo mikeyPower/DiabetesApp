@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 
 public class Registration extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +20,7 @@ public class Registration extends AppCompatActivity {
         addListenerOnButton();
     }
 
-
+    //Function to run when register button is pressed
     public void addListenerOnButton() {
         Button button;
         final Context context = this;
@@ -41,6 +42,7 @@ public class Registration extends AppCompatActivity {
         });
 
     }
+    //This code stops the weird transition effect when the back button is pressed on the phone
     @Override
     public void onBackPressed(){
         super.onBackPressed();

@@ -23,16 +23,20 @@ public class Questions extends AppCompatActivity {
     RadioButton femaleButton;
     TextView topMessageLabel;
     User newUser;
+    Button submit;
 
     final Context context = this;
     int bmi =1;
     int h =1;
     int w =1;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
 
+        //View Components
         name = (EditText) findViewById(R.id.editText);
         age = (EditText) findViewById(R.id.editText2);
         height = (EditText) findViewById(R.id.editText5);
@@ -41,19 +45,23 @@ public class Questions extends AppCompatActivity {
         topMessageLabel = (TextView) findViewById(R.id.topTextLabel);
         maleButton = (RadioButton) findViewById(R.id.maleButton);
         femaleButton = (RadioButton) findViewById(R.id.femaleButton);
+        submit = (Button) findViewById(R.id.submit);
 
+        //Called when weight text field is entered or left
         weight.setOnFocusChangeListener(new View.OnFocusChangeListener(){
             public void onFocusChange(View arg0,boolean arg1){
                 updateBMILabel();
             }
         });
 
+        //Called when height text field is entered or left
         height.setOnFocusChangeListener(new View.OnFocusChangeListener(){
             public void onFocusChange(View arg0,boolean arg1){
                 updateBMILabel();
             }
         });
 
+        //Called when male radio button is pressed
         maleButton.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View view){
@@ -62,7 +70,7 @@ public class Questions extends AppCompatActivity {
             }
         });
 
-
+        //Called when female radio button is pressed
         femaleButton.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View view){
@@ -71,8 +79,13 @@ public class Questions extends AppCompatActivity {
             }
         });
 
-        final Button button = (Button) findViewById(R.id.submit);
-        button.setOnClickListener(new View.OnClickListener() {
+
+
+        /*
+        Function called when submit button is pressed, checks if all fields are filled in and if true then
+        creates a new User object and moves to the home screen
+        */
+        submit.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
                 EditText data[] = {name,age,height,weight};
@@ -94,15 +107,16 @@ public class Questions extends AppCompatActivity {
         });
     }
 
+    //Updates the BMI using the current values of the weight and height fields, will return 0 if either are empty
     private void updateBMILabel(){
         String formatted = String.format("%.1f",calculateBMI(weight.getText().toString(),height.getText().toString()));
         bmiLabel.setText("BMI: " + formatted);
     }
+
+    //Uses weight and height to calculate and return BMI
     private double calculateBMI(String weight,String height){
 
         try{
-            //System.out.println("Weight = " + weight.toString());
-            //System.out.println("Height = " + height.toString());
             double w = Double.parseDouble(weight);
             double h = Double.parseDouble(height);
             h /= 100;
@@ -116,6 +130,7 @@ public class Questions extends AppCompatActivity {
 
     }
 
+    //Function to check if all fields have been filled, returns false if any are empty
     private boolean checkIfAllFieldsFilled(EditText fields[]){
         for(int i =0; i < fields.length; i++){
             if(i > 0){
@@ -139,6 +154,7 @@ public class Questions extends AppCompatActivity {
         return null;
     }
 
+    //This code stops the weird transition effect when the back button is pressed on the phone
     @Override
     public void onBackPressed(){
         super.onBackPressed();

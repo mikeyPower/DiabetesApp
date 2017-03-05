@@ -11,6 +11,7 @@ public class Information extends AppCompatActivity {
         setContentView(R.layout.activity_information);
     }
 
+    //This code stops the weird transition effect when the back button is pressed on the phone
     @Override
     public void onBackPressed(){
         super.onBackPressed();

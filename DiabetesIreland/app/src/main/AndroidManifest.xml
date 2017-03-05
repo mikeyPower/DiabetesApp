@@ -19,7 +19,8 @@
         </activity>
         <activity android:name=".Questions" />
         <activity android:name=".Home" />
-        <activity android:name=".Information"></activity>
+        <activity android:name=".Information" />
+        <activity android:name=".Pyramid"></activity>
     </application>
 
 </manifest>
