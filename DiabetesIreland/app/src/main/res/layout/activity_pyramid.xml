@@ -15,6 +15,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/ic_menu_add"
+        android:layout_marginRight="17dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="32dp"
+        android:id="@+id/button_pyramid_one"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_add"
         android:id="@+id/button_pyramid_two"
         android:layout_below="@+id/button_pyramid_one"
         android:layout_alignLeft="@+id/button_pyramid_one"
@@ -68,7 +80,8 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="52dp">
+            android:layout_height="52dp"
+            android:gravity="center_vertical">
 
             <TextView
                 android:text="0"
@@ -83,7 +96,8 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="56dp">
+            tools:layout_height="52dp"
+            android:gravity="center_vertical">
 
             <TextView
                 android:text="0"
@@ -98,7 +112,8 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="51dp">
+            android:layout_height="52dp"
+            android:gravity="center_vertical">
 
             <TextView
                 android:text="0"
@@ -113,7 +128,8 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="49dp">
+            android:layout_height="52dp"
+            android:gravity="center_vertical">
 
             <TextView
                 android:text="0"
@@ -128,7 +144,8 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="51dp">
+            android:layout_height="52dp"
+            android:gravity="center_vertical">
 
             <TextView
                 android:text="0"
@@ -143,7 +160,10 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="61dp">
+            android:layout_height="52dp"
+            android:layout_gravity="center_vertical"
+            android:foregroundGravity="center_vertical"
+            android:gravity="center_vertical">
 
             <TextView
                 android:text="0"
@@ -156,15 +176,4 @@
         </LinearLayout>
     </LinearLayout>
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_add"
-        android:layout_marginRight="17dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginTop="32dp"
-        android:id="@+id/button_pyramid_one"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 </RelativeLayout>
