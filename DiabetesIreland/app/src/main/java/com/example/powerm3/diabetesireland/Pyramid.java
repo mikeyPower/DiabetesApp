@@ -3,75 +3,93 @@ package com.example.powerm3.diabetesireland;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
 public class Pyramid extends AppCompatActivity {
 
-    ImageButton pyramid_Button_One, pyramid_Button_Two,pyramid_Button_Three,pyramid_Button_Four,pyramid_Button_Five,pyramid_Button_Six;
-
-
-    TextView pyramid_one,pyramid_two,pyramid_three,pyramid_four,pyramid_five,pyramid_six;
     TextView[] texts;
-    int[] ptext;
-    int[] maxes;
+    int[] ptext,maxes;
+    ImageButton[] buttons;
+    String[] str;
+    ImageView[] veg;
+    ImageView[] carb;
+    ImageView[] dairy;
+    ImageView[] protein;
+    ImageView[] fat;
+    ImageView[] bad;
+    ImageView[][] foodArrays;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pyramid);
 
+        str = new String[] {"one","two","three","four","five","six"};
+        maxes = new int[] {1,1,2,3,5,7};
         ptext = new int[6];
+        texts = new TextView[6];
+        buttons = new ImageButton[6];
+
         for(int i = 0;i < ptext.length;i++ ){
             ptext[i] = 0;
         }
 
-        maxes = new int[] {1,1,2,3,5,7};
-        String[] str = {"one","two","three","four","five","six"};
-        pyramid_Button_One = (ImageButton) findViewById(R.id.button_pyramid_one);
-        pyramid_Button_Two = (ImageButton) findViewById(R.id.button_pyramid_two);
-        pyramid_Button_Three = (ImageButton) findViewById(R.id.button_pyramid_three);
-        pyramid_Button_Four = (ImageButton) findViewById(R.id.button_pyramid_four);
-        pyramid_Button_Five = (ImageButton) findViewById(R.id.button_pyramid_five);
-        pyramid_Button_Six = (ImageButton) findViewById(R.id.button_pyramid_six);
-        ImageButton[] buttons = {pyramid_Button_One,pyramid_Button_Two,pyramid_Button_Three,pyramid_Button_Four,pyramid_Button_Five,pyramid_Button_Six};
-        pyramid_one = (TextView) findViewById(R.id.pyramid_one);
-        pyramid_two = (TextView) findViewById(R.id.pyramid_two);
-        pyramid_three = (TextView) findViewById(R.id.pyramid_three);
-        pyramid_four = (TextView) findViewById(R.id.pyramid_four);
-        pyramid_five = (TextView) findViewById(R.id.pyramid_five);
-        pyramid_six = (TextView) findViewById(R.id.pyramid_six);
+        for(int i = 0; i < texts.length; i++){
+            String name = "pyramid_" + str[i];
+            texts[i] = (TextView) findViewById( (getResources().getIdentifier(name, "id", getPackageName())) );
+        }
 
-        texts = new TextView[6];
-        texts[0] = pyramid_one;
-        texts[1] = pyramid_two;
-        texts[2] = pyramid_three;
-        texts[3] = pyramid_four;
-        texts[4] = pyramid_five;
-        texts[5] = pyramid_six;
+        for(int i = 0; i < buttons.length; i++){
+            String name = "button_pyramid_" + str[i];
+            buttons[i] = (ImageButton) findViewById( (getResources().getIdentifier(name, "id" , getPackageName())) );
+        }
 
         for(int i = 0; i < buttons.length;i++){
             final int j = i;
             buttons[i].setOnClickListener(new View.OnClickListener() {
-
                 @Override
                 public void onClick(View v) {
-
                     update_label(j);
                 }
             });
         }
+
+        set_up_pyramid();
     }
 
     private void update_label(int id){
         int newVal = ptext[id];
 
-        if(newVal < maxes[id])
+        if(newVal < maxes[id]) {
+            foodArrays[id][newVal].setAlpha(0xFF);
             newVal = ++ptext[id];
+            texts[id].setText(Integer.toString(newVal));
+        }
+    }
 
-        texts[id].setText(Integer.toString(newVal));
+    private void set_up_pyramid(){
+        String[] foodTypes = new String[]{"bad","fat","protein","dairy","carb","veg"};
+        veg = new ImageView[7];
+        carb = new ImageView[5];
+        dairy = new ImageView[3];
+        protein = new ImageView[2];
+        fat = new ImageView[1];
+        bad = new ImageView[1];
+        foodArrays = new ImageView[][]{bad,fat,protein,dairy,carb,veg};
+
+        String currentFood;
+        for(int i = 0; i < foodArrays.length;i++){
+            currentFood = foodTypes[i];
+            for(int j = 0; j < foodArrays[i].length;j++){
+                foodArrays[i][j] = (ImageView) findViewById( (getResources().getIdentifier( (currentFood + j), "id", getPackageName() )) );
+                foodArrays[i][j].setAlpha(75);
+            }
+        }
+
     }
 
     //This code stops the weird transition effect when the back button is pressed on the phone

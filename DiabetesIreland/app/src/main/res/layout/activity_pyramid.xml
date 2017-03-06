@@ -11,63 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.powerm3.diabetesireland.Pyramid">
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_add"
-        android:layout_marginRight="17dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginTop="32dp"
-        android:id="@+id/button_pyramid_one"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_add"
-        android:id="@+id/button_pyramid_two"
-        android:layout_below="@+id/button_pyramid_one"
-        android:layout_alignLeft="@+id/button_pyramid_one"
-        android:layout_alignStart="@+id/button_pyramid_one" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_add"
-        android:id="@+id/button_pyramid_three"
-        android:layout_below="@+id/button_pyramid_two"
-        android:layout_alignLeft="@+id/button_pyramid_two"
-        android:layout_alignStart="@+id/button_pyramid_two" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_add"
-        android:id="@+id/button_pyramid_four"
-        android:layout_below="@+id/button_pyramid_three"
-        android:layout_alignLeft="@+id/button_pyramid_three"
-        android:layout_alignStart="@+id/button_pyramid_three" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_add"
-        android:id="@+id/button_pyramid_five"
-        android:layout_below="@+id/button_pyramid_four"
-        android:layout_alignLeft="@+id/button_pyramid_four"
-        android:layout_alignStart="@+id/button_pyramid_four" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_add"
-        android:id="@+id/button_pyramid_six"
-        android:layout_below="@+id/button_pyramid_five"
-        android:layout_alignLeft="@+id/button_pyramid_five"
-        android:layout_alignStart="@+id/button_pyramid_five" />
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -88,25 +31,98 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/pyramid_one"
-                android:layout_weight="1"
+                android:layout_weight="0.305"
                 android:textSize="30sp"
+                android:textAlignment="textStart" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@android:color/holo_red_dark"
+                android:id="@+id/bad0"
+                android:layout_weight="1" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="center_vertical">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="150" />
+
+            <TextView
+                android:text="Food And Drink High In Fat, Sugar and Salt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView12"
+                android:layout_weight="1"
                 android:textAlignment="center" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            tools:layout_height="52dp"
-            android:gravity="center_vertical"
-            android:layout_height="52dp">
+            android:layout_height="52dp"
+            android:gravity="center_vertical">
 
             <TextView
                 android:text="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/pyramid_two"
-                android:layout_weight="1"
+                android:layout_weight="0.19"
                 android:textSize="30sp"
+                android:textAlignment="textStart" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@android:color/holo_orange_dark"
+                android:id="@+id/fat0"
+                android:layout_weight="1" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="center_vertical">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.29" />
+
+            <TextView
+                android:text="Fats, spreads and oils"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView13"
+                android:layout_weight="1"
                 android:textAlignment="center" />
         </LinearLayout>
 
@@ -121,8 +137,52 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/pyramid_three"
-                android:layout_weight="1"
+                android:layout_weight="0.27"
                 android:textSize="30sp"
+                android:textAlignment="textStart" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@android:color/holo_orange_light"
+                android:id="@+id/protein0"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@android:color/holo_orange_light"
+                android:id="@+id/protein1"
+                android:layout_weight="1" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="center_vertical">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.66" />
+
+            <TextView
+                android:text="Meat, poultry, fish, eggs and nuts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView14"
+                android:layout_weight="1"
                 android:textAlignment="center" />
         </LinearLayout>
 
@@ -137,8 +197,59 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/pyramid_four"
-                android:layout_weight="1"
+                android:layout_weight="0.31"
                 android:textSize="30sp"
+                android:textAlignment="textStart" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@android:color/holo_blue_bright"
+                android:id="@+id/dairy0"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@android:color/holo_blue_bright"
+                android:id="@+id/dairy1"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@android:color/holo_blue_bright"
+                android:id="@+id/dairy2"
+                android:layout_weight="1" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="center_vertical">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.325" />
+
+            <TextView
+                android:text="Milk, yogurt and cheese"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView15"
+                android:layout_weight="1"
                 android:textAlignment="center" />
         </LinearLayout>
 
@@ -153,9 +264,74 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/pyramid_five"
-                android:layout_weight="1"
+                android:layout_weight="0.45"
                 android:textSize="30sp"
-                android:textAlignment="center" />
+                android:textAlignment="textStart" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@color/CarbBrown"
+                android:id="@+id/carb0"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@color/CarbBrown"
+                android:id="@+id/carb1"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@color/CarbBrown"
+                android:id="@+id/carb2"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@color/CarbBrown"
+                android:id="@+id/carb3"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@color/CarbBrown"
+                android:id="@+id/carb4"
+                android:layout_weight="1" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="center_vertical">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.184" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView16"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="Wholemeal cereals and breads, potatoes, pasta and rice" />
         </LinearLayout>
 
         <LinearLayout
@@ -171,10 +347,139 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/pyramid_six"
-                android:layout_weight="1"
+                android:layout_weight="0.54"
                 android:textSize="30sp"
+                android:textAlignment="textStart" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@color/VegGreen"
+                android:id="@+id/veg0"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@color/VegGreen"
+                android:id="@+id/veg1"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@color/VegGreen"
+                android:id="@+id/veg2"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@color/VegGreen"
+                android:id="@+id/veg3"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@color/VegGreen"
+                android:id="@+id/veg4"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@color/VegGreen"
+                android:id="@+id/veg5"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                app:srcCompat="@color/VegGreen"
+                android:id="@+id/veg6"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="center_vertical">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.184" />
+
+            <TextView
+                android:text="Vegetables, salad and fruit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView17"
+                android:layout_weight="1"
                 android:textAlignment="center" />
         </LinearLayout>
     </LinearLayout>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        android:layout_marginTop="32dp"
+        android:id="@+id/button_pyramid_one"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        android:id="@+id/button_pyramid_six"
+        android:layout_marginBottom="34dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        android:id="@+id/button_pyramid_five"
+        android:layout_above="@+id/button_pyramid_six"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="21dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        android:id="@+id/button_pyramid_four"
+        android:layout_above="@+id/button_pyramid_five"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        android:id="@+id/button_pyramid_three"
+        android:layout_above="@+id/button_pyramid_four"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="19dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        android:id="@+id/button_pyramid_two"
+        android:layout_below="@+id/button_pyramid_one"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>
