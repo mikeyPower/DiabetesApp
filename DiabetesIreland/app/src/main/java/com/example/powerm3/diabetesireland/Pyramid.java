@@ -11,17 +11,14 @@ import org.w3c.dom.Text;
 
 public class Pyramid extends AppCompatActivity {
 
-    TextView[] texts;
+    TextView[] texts,foodTypeTexts;
+    TextView badText,fatText,proteinText,dairyText,carbText,vegText;
     int[] ptext,maxes;
     ImageButton[] buttons;
     String[] str;
-    ImageView[] veg;
-    ImageView[] carb;
-    ImageView[] dairy;
-    ImageView[] protein;
-    ImageView[] fat;
-    ImageView[] bad;
+    ImageView[] veg,carb,dairy,protein,fat,bad;
     ImageView[][] foodArrays;
+    String[] foodTypes = new String[]{"bad","fat","protein","dairy","carb","veg"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -33,6 +30,7 @@ public class Pyramid extends AppCompatActivity {
         ptext = new int[6];
         texts = new TextView[6];
         buttons = new ImageButton[6];
+        foodTypeTexts = new TextView[6];
 
         for(int i = 0;i < ptext.length;i++ ){
             ptext[i] = 0;
@@ -40,7 +38,12 @@ public class Pyramid extends AppCompatActivity {
 
         for(int i = 0; i < texts.length; i++){
             String name = "pyramid_" + str[i];
-            texts[i] = (TextView) findViewById( (getResources().getIdentifier(name, "id", getPackageName())) );
+            texts[i] = (TextView) findViewById( ( getResources().getIdentifier(name, "id", getPackageName() ) ) );
+        }
+
+        for(int i = 0; i < foodTypeTexts.length; i++){
+            String name = foodTypes[i] + "Text";
+            foodTypeTexts[i] = (TextView) findViewById( ( getResources().getIdentifier(name, "id",getPackageName() ) ) );
         }
 
         for(int i = 0; i < buttons.length; i++){
@@ -58,7 +61,7 @@ public class Pyramid extends AppCompatActivity {
             });
         }
 
-        set_up_pyramid();
+        reset_pyramid();
     }
 
     private void update_label(int id){
@@ -68,11 +71,15 @@ public class Pyramid extends AppCompatActivity {
             foodArrays[id][newVal].setAlpha(0xFF);
             newVal = ++ptext[id];
             texts[id].setText(Integer.toString(newVal));
+
+            if(newVal == maxes[id]){
+                foodTypeTexts[id].setTextColor(0xFFFF0000);
+                buttons[id].setClickable(false);
+            }
         }
     }
 
-    private void set_up_pyramid(){
-        String[] foodTypes = new String[]{"bad","fat","protein","dairy","carb","veg"};
+    private void reset_pyramid(){
         veg = new ImageView[7];
         carb = new ImageView[5];
         dairy = new ImageView[3];

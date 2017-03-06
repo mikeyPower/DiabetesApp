@@ -68,7 +68,7 @@
                 android:text="Food And Drink High In Fat, Sugar and Salt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView12"
+                android:id="@+id/badText"
                 android:layout_weight="1"
                 android:textAlignment="center" />
         </LinearLayout>
@@ -115,13 +115,13 @@
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.29" />
+                android:layout_weight="0.295" />
 
             <TextView
                 android:text="Fats, spreads and oils"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView13"
+                android:id="@+id/fatText"
                 android:layout_weight="1"
                 android:textAlignment="center" />
         </LinearLayout>
@@ -181,7 +181,7 @@
                 android:text="Meat, poultry, fish, eggs and nuts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView14"
+                android:id="@+id/proteinText"
                 android:layout_weight="1"
                 android:textAlignment="center" />
         </LinearLayout>
@@ -197,14 +197,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/pyramid_four"
-                android:layout_weight="0.31"
+                android:layout_weight="0.32"
                 android:textSize="30sp"
                 android:textAlignment="textStart" />
 
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.50" />
+                android:layout_weight="0.6" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -230,7 +230,7 @@
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5" />
+                android:layout_weight="0.6" />
         </LinearLayout>
 
         <LinearLayout
@@ -248,7 +248,7 @@
                 android:text="Milk, yogurt and cheese"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView15"
+                android:id="@+id/dairyText"
                 android:layout_weight="1"
                 android:textAlignment="center" />
         </LinearLayout>
@@ -264,14 +264,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/pyramid_five"
-                android:layout_weight="0.45"
+                android:layout_weight="0.46"
                 android:textSize="30sp"
                 android:textAlignment="textStart" />
 
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.4" />
+                android:layout_weight="0.5" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -311,7 +311,7 @@
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.4" />
+                android:layout_weight="0.5" />
         </LinearLayout>
 
         <LinearLayout
@@ -323,15 +323,15 @@
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.184" />
+                android:layout_weight="135.80" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView16"
+                android:id="@+id/carbText"
                 android:layout_weight="1"
                 android:textAlignment="center"
-                android:text="Wholemeal cereals and breads, potatoes, pasta and rice" />
+                android:text="Wholemeal cereals, potatoes, pasta and rice" />
         </LinearLayout>
 
         <LinearLayout
@@ -410,13 +410,13 @@
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.184" />
+                android:layout_weight="0.395" />
 
             <TextView
                 android:text="Vegetables, salad and fruit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView17"
+                android:id="@+id/vegText"
                 android:layout_weight="1"
                 android:textAlignment="center" />
         </LinearLayout>
