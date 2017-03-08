@@ -2,6 +2,8 @@ package com.example.powerm3.diabetesireland;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,12 +26,13 @@ public class Questions extends AppCompatActivity {
     TextView topMessageLabel;
     User newUser;
     Button submit;
-
+    SharedPreferences sharedPref;
+    SharedPreferences.Editor editor;
     final Context context = this;
     int bmi =1;
     int h =1;
     int w =1;
-
+    boolean isMale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,11 @@ public class Questions extends AppCompatActivity {
         setContentView(R.layout.activity_questions);
 
         //View Components
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = sharedPref.edit();
+        isMale = true;
+
+
         name = (EditText) findViewById(R.id.editText);
         age = (EditText) findViewById(R.id.editText2);
         height = (EditText) findViewById(R.id.editText5);
@@ -66,6 +74,7 @@ public class Questions extends AppCompatActivity {
 
             public void onClick(View view){
                 femaleButton.setChecked(false);
+                isMale = true;
                 updateBMILabel();
             }
         });
@@ -75,6 +84,7 @@ public class Questions extends AppCompatActivity {
 
             public void onClick(View view){
                 maleButton.setChecked(false);
+                isMale = false;
                 updateBMILabel();
             }
         });
@@ -90,11 +100,17 @@ public class Questions extends AppCompatActivity {
             public void onClick(View view) {
                 EditText data[] = {name,age,height,weight};
                 if(checkIfAllFieldsFilled(data)) {
-                    newUser = new User(name.getText().toString(),Double.parseDouble(age.getText().toString()),Double.parseDouble(height.getText().toString()),Double.parseDouble(weight.getText().toString()));
+                    newUser = new User(name.getText().toString(),Double.parseDouble(age.getText().toString()),Double.parseDouble(height.getText().toString()),Double.parseDouble(weight.getText().toString()),isMale);
 
+                    editor.putString("name",newUser.getName());
+                    editor.putInt("age",newUser.getAge());
+                    editor.putFloat("height",(float) newUser.getHeight());
+                    editor.putFloat("weight",(float) newUser.getWeight());
+                    editor.putBoolean("isMale",isMale);
+                    editor.commit();
                     Intent intent = new Intent(context, Home.class);
                     startActivity(intent);
-                    intent.putExtra("userData", newUser);
+
                     overridePendingTransition(0, 0);
                 }else{
                     topMessageLabel.setText("Error: Please Complete All Fields");

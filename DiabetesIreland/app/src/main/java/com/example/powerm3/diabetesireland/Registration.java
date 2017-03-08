@@ -1,5 +1,7 @@
 package com.example.powerm3.diabetesireland;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.Activity;
@@ -12,11 +14,25 @@ import android.view.View.OnClickListener;
 
 public class Registration extends AppCompatActivity {
 
-
+    SharedPreferences sharedPref;
+    SharedPreferences.Editor editor;
+    final Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = sharedPref.edit();
+        String test = sharedPref.getString("name","");
+        if(test.equals("")){
+
+        }else{
+            Intent intent = new Intent(context, Home.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        }
+
         addListenerOnButton();
     }
 

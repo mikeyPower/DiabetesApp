@@ -76,7 +76,7 @@
 
 
     <EditText
-        android:hint="Height"
+        android:hint="Height (cm)"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
@@ -86,6 +86,19 @@
         android:layout_below="@+id/editText2"
         android:layout_alignLeft="@+id/editText6"
         android:layout_alignStart="@+id/editText6" />
+
+
+
+    <EditText
+        android:hint="Weight (kg)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:layout_marginTop="11dp"
+        android:id="@+id/editText6"
+        android:layout_below="@+id/editText5"
+        android:layout_centerHorizontal="true" />
 
     <RadioButton
         android:text="Male"
@@ -97,17 +110,6 @@
         android:layout_alignLeft="@+id/editText6"
         android:layout_alignStart="@+id/editText6"
         android:checked="true" />
-
-    <EditText
-        android:hint="Weight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:layout_marginTop="11dp"
-        android:id="@+id/editText6"
-        android:layout_below="@+id/editText5"
-        android:layout_centerHorizontal="true" />
 
     <RadioButton
         android:text="Female"

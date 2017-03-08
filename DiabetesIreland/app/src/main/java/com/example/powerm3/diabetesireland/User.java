@@ -18,13 +18,16 @@ public class User implements Parcelable {
     private double weight;
     private double height;
     private double bmi;
+    private int age;
+    private boolean isMale;
     private String name;
 
-    public User(String name,double age,double height,double weight){
+    public User(String name,double age,double height,double weight,boolean isMale){
         this.weight = (double) weight;
         this.height = (double) height;
         this.name = name;
-
+        this.age = (int) age;
+        this.isMale = isMale;
     }
 
     @Override
@@ -77,6 +80,10 @@ public class User implements Parcelable {
 
     public String getName(){ if(name != null) return name;
     else return null;}
+
+    public int getAge(){
+        return age;
+    }
 
     public void setWeight(int w) {
         this.weight = w;

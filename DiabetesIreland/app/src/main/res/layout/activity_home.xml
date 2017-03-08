@@ -57,4 +57,25 @@
         android:layout_alignLeft="@+id/imageView2"
         android:layout_alignStart="@+id/imageView2" />
 
+    <TextView
+        android:text="Welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/welcome_label"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:layout_alignBottom="@+id/infoButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="76dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_manage"
+        android:id="@+id/imageButton"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="18dp" />
+
 </RelativeLayout>
