@@ -20,7 +20,8 @@
         <activity android:name=".Questions" />
         <activity android:name=".Home" />
         <activity android:name=".Information" />
-        <activity android:name=".Pyramid"></activity>
+        <activity android:name=".Pyramid" />
+        <activity android:name=".Profile"></activity>
     </application>
 
 </manifest>

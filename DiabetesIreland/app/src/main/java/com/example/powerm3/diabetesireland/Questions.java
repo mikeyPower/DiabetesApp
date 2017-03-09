@@ -106,6 +106,7 @@ public class Questions extends AppCompatActivity {
                     editor.putInt("age",newUser.getAge());
                     editor.putFloat("height",(float) newUser.getHeight());
                     editor.putFloat("weight",(float) newUser.getWeight());
+                    editor.putFloat("bmi",(float) newUser.getBMI());
                     editor.putBoolean("isMale",isMale);
                     editor.commit();
                     Intent intent = new Intent(context, Home.class);

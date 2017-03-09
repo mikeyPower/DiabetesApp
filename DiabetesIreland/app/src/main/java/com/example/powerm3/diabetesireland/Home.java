@@ -18,7 +18,7 @@ public class Home extends AppCompatActivity {
 
 
     User user;
-    ImageButton infoButton,trackerButton;
+    ImageButton infoButton,trackerButton,profileButton;
     final Context context = this;
     TextView welcomeLabel;
     SharedPreferences sharedPref;
@@ -35,6 +35,7 @@ public class Home extends AppCompatActivity {
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         userName = sharedPref.getString("name","");
 
+        profileButton = (ImageButton) findViewById(R.id.profile_button);
         infoButton = (ImageButton) findViewById(R.id.infoButton);
         trackerButton = (ImageButton) findViewById(R.id.tracker_button);
 
@@ -63,7 +64,15 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, Profile.class);
+                startActivity(intent);
 
+                overridePendingTransition(0,0);
+            }
+        });
         //welcomeLabel.setText("Welcome" + user.getName());
 
     }
