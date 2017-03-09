@@ -40,8 +40,7 @@ public class Profile extends AppCompatActivity {
     //This code stops the weird transition effect when the back button is pressed on the phone
     @Override
     public void onBackPressed(){
-        moveTaskToBack(true);
-
+        super.onBackPressed();
         overridePendingTransition(0,0);
     }
 }
