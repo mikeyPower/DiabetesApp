@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_profile"
     android:layout_width="match_parent"
@@ -25,15 +26,30 @@
             android:id="@+id/textView10"
             android:textSize="18sp" />
 
-        <TextView
-            android:text="Name"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical">
 
-            android:id="@+id/label_name"
-            android:textSize="24sp" />
+            <TextView
+                android:text="Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+
+                android:id="@+id/label_name"
+                android:textSize="24sp"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_menu_edit"
+                android:id="@+id/button_name"
+                android:layout_weight="5" />
+        </LinearLayout>
 
         <TextView
             android:text="Age:"
@@ -42,14 +58,29 @@
             android:id="@+id/textView11"
             android:textSize="18sp" />
 
-        <TextView
-            android:text="Age"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical">
 
-            android:id="@+id/label_age"
-            android:textSize="24sp"
-            android:layout_centerHorizontal="true" />
+            <TextView
+                android:text="Age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/label_age"
+                android:textSize="24sp"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_menu_edit"
+                android:id="@+id/button_age"
+                android:layout_weight="5" />
+        </LinearLayout>
 
         <TextView
             android:text="Height:"
@@ -58,13 +89,28 @@
             android:id="@+id/textView12"
             android:textSize="18sp" />
 
-        <TextView
-            android:text="Height"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/label_height"
-            android:textSize="24sp"
-            android:layout_centerHorizontal="true" />
+            android:gravity="center_vertical">
+
+            <TextView
+                android:text="Height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_height"
+                android:textSize="24sp"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_menu_edit"
+                android:id="@+id/button_height"
+                android:layout_weight="5" />
+        </LinearLayout>
 
         <TextView
             android:text="Weight"
@@ -73,12 +119,27 @@
             android:id="@+id/textView13"
             android:textSize="18sp" />
 
-        <TextView
-            android:text="Weight"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/label_weight"
-            android:textSize="24sp" />
+            android:gravity="center_vertical">
+
+            <TextView
+                android:text="Weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_weight"
+                android:textSize="24sp"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_menu_edit"
+                android:id="@+id/button_weight"
+                android:layout_weight="5" />
+        </LinearLayout>
 
         <TextView
             android:text="BMI:"
@@ -87,12 +148,27 @@
             android:id="@+id/textView14"
             android:textSize="18sp" />
 
-        <TextView
-            android:text="BMI"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/label_bmi"
-            android:textSize="24sp" />
+            android:gravity="center_vertical">
+
+            <TextView
+                android:text="BMI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_bmi"
+                android:textSize="24sp"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_menu_edit"
+                android:id="@+id/button_bmi"
+                android:layout_weight="5" />
+        </LinearLayout>
 
         <TextView
             android:text="Sex:"
@@ -101,11 +177,27 @@
             android:id="@+id/textView15"
             android:textSize="18sp" />
 
-        <TextView
-            android:text="Sex"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/label_isMale"
-            android:textSize="24sp" />
+            android:gravity="center_vertical">
+
+            <TextView
+                android:text="Sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_isMale"
+                android:textSize="24sp"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_menu_edit"
+                android:id="@+id/button_isMale"
+                android:layout_weight="5" />
+        </LinearLayout>
+
     </LinearLayout>
 </RelativeLayout>

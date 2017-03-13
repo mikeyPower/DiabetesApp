@@ -29,7 +29,7 @@ public class Questions extends AppCompatActivity {
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
     final Context context = this;
-    int bmi =1;
+    double bmi =1;
     int h =1;
     int w =1;
     boolean isMale;
@@ -101,12 +101,13 @@ public class Questions extends AppCompatActivity {
                 EditText data[] = {name,age,height,weight};
                 if(checkIfAllFieldsFilled(data)) {
                     newUser = new User(name.getText().toString(),Double.parseDouble(age.getText().toString()),Double.parseDouble(height.getText().toString()),Double.parseDouble(weight.getText().toString()),isMale);
-
+                    bmi = calculateBMI(weight.getText().toString(),height.getText().toString());
                     editor.putString("name",newUser.getName());
                     editor.putInt("age",newUser.getAge());
                     editor.putFloat("height",(float) newUser.getHeight());
                     editor.putFloat("weight",(float) newUser.getWeight());
                     editor.putFloat("bmi",(float) newUser.getBMI());
+                    System.out.println("BMI being stored is: " + newUser.getBMI());
                     editor.putBoolean("isMale",isMale);
                     editor.commit();
                     Intent intent = new Intent(context, Home.class);
@@ -131,7 +132,7 @@ public class Questions extends AppCompatActivity {
     }
 
     //Uses weight and height to calculate and return BMI
-    private double calculateBMI(String weight,String height){
+    public static double calculateBMI(String weight,String height){
 
         try{
             double w = Double.parseDouble(weight);

@@ -13,7 +13,7 @@ import java.io.FileOutputStream;
  * Created by Conal on 15/02/2017.
  */
 
-public class User implements Parcelable {
+public class User  {
 
     private double weight;
     private double height;
@@ -28,43 +28,14 @@ public class User implements Parcelable {
         this.name = name;
         this.age = (int) age;
         this.isMale = isMale;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel out, int flags) {
-        out.writeDouble(weight);
-        out.writeDouble(height);
-        out.writeDouble(bmi);
-        out.writeString(name);
-    }
-
-    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
-        public User createFromParcel(Parcel in) {
-            return new User(in);
-        }
-
-        public User[] newArray(int size) {
-            return new User[size];
-        }
-    };
-
-    private User(Parcel in) {
-        this.weight = in.readDouble();
-        this.height = in.readDouble();
-        this.bmi = in.readDouble();
-        this.name = in.readString();
-        System.out.print("USER ATTRIBUTES :\n WEIGHT: " + this.weight + "\n HEIGHT " + this.height + "\n BMI: " + this.bmi + "\n");
+        updateBMI();
     }
 
 
-    public User (Activity context) throws FileNotFoundException{
 
-    }
+
+
+
 
     public double getWeight(){
         return weight;
@@ -96,7 +67,17 @@ public class User implements Parcelable {
     }
 
     public void updateBMI(){
-        this.bmi = weight / (height/100)*(height/100);
+        try{
+            double w = weight;
+            double h = height;
+            h /= 100;
+            double newbmi =  (w/(h*h));
+            this.bmi =  newbmi;
+
+        }catch(Exception e){
+
+            this.bmi =  0;
+        }
     }
 
 }

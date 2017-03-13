@@ -42,6 +42,7 @@ public class Pyramid extends AppCompatActivity {
                 for(int i = 0; i < foodTypes.length; i++){
                     editor.remove(foodTypes[i]);
                 }
+                editor.clear();
                 editor.commit();
                 reset_pyramid();
 

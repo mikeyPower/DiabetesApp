@@ -28,11 +28,16 @@ public class Home extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = sharedPref.edit();
+
+        //editor.clear();
+        //editor.commit();
+
         userName = sharedPref.getString("name","");
 
         profileButton = (ImageButton) findViewById(R.id.profile_button);
@@ -74,6 +79,13 @@ public class Home extends AppCompatActivity {
             }
         });
         //welcomeLabel.setText("Welcome" + user.getName());
+
+    }
+
+    public void onResume(){
+        super.onResume();
+        userName = sharedPref.getString("name","");
+        welcomeLabel.setText("Welcome " + userName);
 
     }
 
