@@ -75,7 +75,7 @@ public class Profile extends AppCompatActivity {
                                     String text = et.getText().toString();
                                     System.out.println("String = " + text);
                                     if(text.equals("") || text.equals(null)){
-
+                                        updateLabels();
                                     }else if(j == 0){
                                         editor.putString(labelNames[j],text);
                                         editor.commit();
@@ -92,6 +92,7 @@ public class Profile extends AppCompatActivity {
                                         }
 
                                     }
+
                                 }
                             }
                     );
@@ -110,8 +111,10 @@ public class Profile extends AppCompatActivity {
     private void updateLabels(){
         float newBmi = (float) Questions.calculateBMI(Float.toString(sharedPref.getFloat("weight",0)),Float.toString(sharedPref.getFloat("height",0)));
         editor.putFloat("bmi",newBmi);
+        editor.commit();
+        
         labels[0].setText(sharedPref.getString(labelNames[0],labelNames[0]));
-        labels[1].setText(Integer.toString(sharedPref.getInt(labelNames[1],0)));
+        labels[1].setText(Float.toString(sharedPref.getFloat(labelNames[1],0)));
         labels[2].setText(Float.toString(sharedPref.getFloat(labelNames[2],0)));
         labels[3].setText(Float.toString(sharedPref.getFloat(labelNames[3],0)));
         String BMIstr = String.format("%.1f",sharedPref.getFloat(labelNames[4],0));
