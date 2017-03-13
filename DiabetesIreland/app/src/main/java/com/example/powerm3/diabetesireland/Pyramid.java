@@ -17,7 +17,6 @@ public class Pyramid extends AppCompatActivity {
 
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
-
     TextView[] texts,foodTypeTexts;
     TextView badText,fatText,proteinText,dairyText,carbText,vegText;
     int[] ptext,maxes;
@@ -28,29 +27,19 @@ public class Pyramid extends AppCompatActivity {
     ImageView[][] foodArrays;
     String[] foodTypes = new String[]{"bad","fat","protein","dairy","carb","veg"};
     Button reset;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pyramid);
 
-        reset = (Button) findViewById(R.id.reset);
 
-        reset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int i = 0; i < foodTypes.length; i++){
-                    editor.remove(foodTypes[i]);
-                }
-                editor.clear();
-                editor.commit();
-                reset_pyramid();
 
-            }
-        });
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPref.edit();
 
+        //set up arrays
         str = new String[] {"one","two","three","four","five","six"};
         maxes = new int[] {1,1,2,3,5,7};
         ptext = new int[6];
@@ -59,22 +48,22 @@ public class Pyramid extends AppCompatActivity {
         foodTypeTexts = new TextView[6];
         subtractButtons = new ImageButton[6];
 
-
+        //set up number label for each bar on pyramid
         for(int i = 0; i < texts.length; i++){
             String name = "pyramid_" + str[i];
             texts[i] = (TextView) findViewById( ( getResources().getIdentifier(name, "id", getPackageName() ) ) );
         }
-
+        //set up labels for each bar describing food types
         for(int i = 0; i < foodTypeTexts.length; i++){
             String name = foodTypes[i] + "Text";
             foodTypeTexts[i] = (TextView) findViewById( ( getResources().getIdentifier(name, "id",getPackageName() ) ) );
         }
-
+        //set up add buttons
         for(int i = 0; i < buttons.length; i++){
             String name = "button_pyramid_" + str[i];
             buttons[i] = (ImageButton) findViewById( (getResources().getIdentifier(name, "id" , getPackageName())) );
         }
-
+        //set up click actions for add buttons
         for(int i = 0; i < buttons.length;i++){
             final int j = i;
             System.out.println("Button = i");
@@ -85,16 +74,14 @@ public class Pyramid extends AppCompatActivity {
                 }
             });
         }
-
+        //set up subtract buttons for pyramid bars
         for(int i = 0; i < subtractButtons.length; i++){
             String name = "button_pyramid_" + str[i] + "_sub";
-            System.out.println("Name: " + name);
             subtractButtons[i] = (ImageButton) findViewById( (getResources().getIdentifier(name,"id", getPackageName() ) ) );
         }
-
+        //set up actions for subtract buttons
         for(int i = 0; i < subtractButtons.length; i++){
             final int j = i;
-            System.out.println("I = " + i);
             subtractButtons[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -102,18 +89,34 @@ public class Pyramid extends AppCompatActivity {
                 }
             });
         }
+        //sets the pyramid to blank before filling it using values in shared preferences
         reset_pyramid();
+        //set up values of number labels beside each pyramid bar
         for(int i = 0; i < ptext.length; i++) {
             ptext[i] = sharedPref.getInt(foodTypes[i], 0);
             update_label_nonAdd(i);
 
         }
-
-
-
+        //sets up each bar of pyramid based on values in shared preferences
         for(int i = 0; i < ptext.length; i++) {
             set_bar(i);
         }
+        //set up reset button
+        reset = (Button) findViewById(R.id.reset);
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for(int i = 0; i < foodTypes.length; i++){
+                    editor.remove(foodTypes[i]);
+                }
+                //editor.clear();           //uncomment if you want reset button to reset all
+                //                          //sharedPreferences
+                editor.commit();
+                reset_pyramid();
+
+            }
+        });
+
     }
 
     //Increments the number of a certain food group by one and updates the label on the left hand side as well as the bar
@@ -127,7 +130,7 @@ public class Pyramid extends AppCompatActivity {
             texts[id].setText(Integer.toString(newVal));
             editor.putInt(foodTypes[id],ptext[id]);
             editor.commit();
-
+            subtractButtons[id].setClickable(true);
         }
         if(newVal == maxes[id]){
             texts[id].setText(Integer.toString(newVal));
@@ -168,6 +171,7 @@ public class Pyramid extends AppCompatActivity {
             buttons[id].setClickable(true);
             editor.putInt(foodTypes[id],ptext[id]);
             editor.commit();
+            foodTypeTexts[id].setTextColor(0xFF000000);
 
         }
         if(newVal == 0){

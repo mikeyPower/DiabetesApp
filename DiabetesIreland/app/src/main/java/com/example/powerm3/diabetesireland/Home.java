@@ -31,21 +31,23 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
+        //set up shared preferences to retrieve user data
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPref.edit();
 
-        //editor.clear();
-        //editor.commit();
 
+        //retrieve the user's name stored in shared preferences
         userName = sharedPref.getString("name","");
 
+        //attach the buttons on the home screen to declared variables
         profileButton = (ImageButton) findViewById(R.id.profile_button);
         infoButton = (ImageButton) findViewById(R.id.infoButton);
         trackerButton = (ImageButton) findViewById(R.id.tracker_button);
 
+        //attach the text labels
         welcomeLabel = (TextView) findViewById(R.id.welcome_label);
         welcomeLabel.setText("Welcome " + userName);
+
         //Sets up the information button to transition to the info screen
         infoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +71,7 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        //Sets up profile button to change to the profile screen
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,10 +81,11 @@ public class Home extends AppCompatActivity {
                 overridePendingTransition(0,0);
             }
         });
-        //welcomeLabel.setText("Welcome" + user.getName());
 
     }
 
+    //updated welcome label with user's name when view is reopened
+    //necessary when coming back from profile screen where name may have been changed
     public void onResume(){
         super.onResume();
         userName = sharedPref.getString("name","");
