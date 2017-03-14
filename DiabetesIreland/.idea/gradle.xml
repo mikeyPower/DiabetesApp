@@ -5,6 +5,10 @@
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+<<<<<<< HEAD
+=======
+        <option name="gradleHome" value="U:\Android\gradle\gradle-2.14.1" />
+>>>>>>> f0e939a4d00b1c2fd0407df39af2b6cf94b767a0
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
