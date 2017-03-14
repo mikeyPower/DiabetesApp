@@ -105,7 +105,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
 
-    public void addIndividual(String name, int age, String gender, int height, int weight){
+    public void addIndividual(String name, int age, String gender, float height, float weight){
 
         SQLiteDatabase db = this.getWritableDatabase();
         String ROW1 = "INSERT INTO " + TABLE_USER  + " ("
@@ -117,49 +117,43 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
     // Modify user info to reflect profile changes
-    public void updateWeight(double newWeight) {
+    public void updateWeight(float newWeight) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_WEIGHT + " = " + newWeight);
+        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_WEIGHT + " = " + newWeight+ "WHERER "+ USER_ID +" = "+1);
     }
 
-    public void updateHeight(double newHeight) {
+    public void updateHeight(float newHeight) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_WEIGHT + " = " + newHeight);
+        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_WEIGHT + " = " + newHeight+ "WHERER "+ USER_ID +" = "+1);
     }
 
     public void updateAge (int newAge)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_AGE + " = " + newAge);
+        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_AGE + " = " + newAge+ "WHERER "+ USER_ID +" = "+1);
     }
 
     public void updateGender( String newGender)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_GENDER + " = " + newGender);
+        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_GENDER + " = " + newGender + "WHERER "+ USER_ID +" = "+1);
     }
 
 
 
 
-
-
-
-
-
-
+    
 
     // Update daily data with food intake
-    public void updateDailyFood(float portionSize, String type) {
+    public void updateDailyFood(float portionSize, String type, int amount) {
         // currently only updating current day's data
         SQLiteDatabase db = this.getWritableDatabase();
         String date = new SimpleDateFormat("dd-MM-yyyy", Locale.UK).format(new Date());
         if (recordExistsFood(date)){
-            db.execSQL("UPDATE " +  TABLE_FOOD+ " SET " + type + " = " + type + " + " + portionSize + " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
+            db.execSQL("UPDATE " +  TABLE_FOOD+ " SET " + type + " = " + type + " + " + amount + " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
         }
         else{
-
-            db.execSQL("UPDATE " + TABLE_FOOD + " SET " + type + " = " + type + " + " + portionSize + " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
+            db.execSQL("UPDATE " +  TABLE_FOOD+ " SET " + type + " = " + type + " + " + amount + " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
         }
     }
 
