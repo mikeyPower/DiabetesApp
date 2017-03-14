@@ -21,6 +21,7 @@
         <activity android:name=".Home" />
         <activity android:name=".Information" />
         <activity android:name=".Pyramid" />
+        <activity android:name=".Fitness" />
         <activity android:name=".Profile"></activity>
     </application>
 

@@ -18,7 +18,7 @@ public class Home extends AppCompatActivity {
 
 
     User user;
-    ImageButton infoButton,trackerButton,profileButton;
+    ImageButton infoButton,trackerButton,profileButton, fitnessButton;
     final Context context = this;
     TextView welcomeLabel;
     SharedPreferences sharedPref;
@@ -43,6 +43,7 @@ public class Home extends AppCompatActivity {
         profileButton = (ImageButton) findViewById(R.id.profile_button);
         infoButton = (ImageButton) findViewById(R.id.infoButton);
         trackerButton = (ImageButton) findViewById(R.id.tracker_button);
+        fitnessButton = (ImageButton) findViewById(R.id.fitness_button);
 
         //attach the text labels
         welcomeLabel = (TextView) findViewById(R.id.welcome_label);
@@ -76,6 +77,19 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, Profile.class);
+                startActivity(intent);
+
+                overridePendingTransition(0,0);
+            }
+        });
+
+
+
+//Sets up profile button to change to the fitness screen
+        fitnessButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, Fitness.class);
                 startActivity(intent);
 
                 overridePendingTransition(0,0);
