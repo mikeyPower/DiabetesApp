@@ -35,7 +35,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String USER_WEIGHT= "WEIGHT";         // in kg/other
     public static final String USER_ID = "ID";
     public static final String USER_NAME = "NAME";
-    public static final String USER_GOAL = "GOAL";           // daily targets?
+    public static final String USER_CALORIES = "GOAL";           // daily targets?
 
     // Food Data Table
     public static final String TABLE_FOOD= "FOOD";
@@ -47,6 +47,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String FOOD_WATER = "WATER_INTAKE";
     public static final String FOOD_THREATS = "TREATS_INTAKE";
     public static final String FOOD_DATE = "DATE_FOOD";
+    public static final String FOOD_CALORIES = "CAL";
 
 
 
@@ -65,7 +66,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
                 +USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+ USER_NAME + "TEXT," +USER_AGE +"INTEGER,"
-                +USER_GENDER +"TEXT,"+USER_HEIGHT+"INTEGER," +USER_WEIGHT + "FLOAT" + USER_GOAL + "INTEGER" +");";
+                +USER_GENDER +"TEXT,"+USER_HEIGHT+"INTEGER," +USER_WEIGHT + "FLOAT" + USER_CALORIES + "INTEGER" +");";
 
         String CREATE_FOOD_TABLE = "CREATE TABLE " + TABLE_FOOD + "("
                 +FOOD_DATE + "TEXT,"
@@ -102,12 +103,12 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
 
-    public void addIndividual(String name, int age, String gender, float height, float weight){
+    public void addIndividual(String name, int age, String gender, float height, float weight, int calories){
 
         SQLiteDatabase db = this.getWritableDatabase();
         String ROW1 = "INSERT INTO " + TABLE_USER  + " ("
-                + USER_NAME +", "+ USER_AGE + ", "+ USER_GENDER+", "+USER_HEIGHT+", "+USER_WEIGHT+") Values ( '" +name
-        +", "+age+", "+gender+", "+height+", "+weight+"')";
+                + USER_NAME +", "+ USER_AGE + ", "+ USER_GENDER+", "+USER_HEIGHT+", "+USER_WEIGHT+ ", " + USER_CALORIES+") Values ( '" +name
+        +", "+age+", "+gender+", "+height+", "+weight+", "+calories+"')";
         db.execSQL(ROW1);
         db.close();
     }
@@ -116,59 +117,61 @@ public class DBHandler extends SQLiteOpenHelper {
     // Modify user info to reflect profile changes
     public void updateWeight(float newWeight) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_WEIGHT + " = " + newWeight+ "WHERER "+ USER_ID +" = "+1);
+        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_WEIGHT + " = " + newWeight+ "WHERE "+ USER_ID +" = "+1);
     }
 
     public void updateHeight(float newHeight) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_WEIGHT + " = " + newHeight+ "WHERER "+ USER_ID +" = "+1);
+        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_WEIGHT + " = " + newHeight+ "WHERE "+ USER_ID +" = "+1);
     }
 
     public void updateAge (int newAge)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_AGE + " = " + newAge+ "WHERER "+ USER_ID +" = "+1);
+        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_AGE + " = " + newAge+ "WHERE "+ USER_ID +" = "+1);
     }
 
     public void updateGender( String newGender)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_GENDER + " = " + newGender + "WHERER "+ USER_ID +" = "+1);
+        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_GENDER + " = " + newGender + "WHERE "+ USER_ID +" = "+1);
     }
-
+    public void updateCalories( int newCalories)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_CALORIES + " = " + newCalories  + "WHERE "+ USER_ID +" = "+1);
+    }
 
 
 
     
 
     // Update daily data with food intake
-    public void updateDailyFood(float portionSize, String type, int amount) {
+    public void updateDailyFood(float calSize, String type, int amount) {
         // currently only updating current day's data
         SQLiteDatabase db = this.getWritableDatabase();
         String date = new SimpleDateFormat("dd-MM-yyyy", Locale.UK).format(new Date());
         if (recordExistsFood(date)){
-            db.execSQL("UPDATE " +  TABLE_FOOD+ " SET " + type + " = " + type + " + " + amount + " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
+            db.execSQL("UPDATE " +  TABLE_FOOD+ " SET " + type + " = " +  amount +","+ FOOD_CALORIES + " = "+calSize+ " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
         }
         else{
+            //insert everything null then update the column we want
+          //  db.execSQL("UPDATE " +  TABLE_FOOD+ " SET " + type + " = " +  amount + " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
 
-            db.execSQL("UPDATE " +  TABLE_FOOD+ " SET " + type + " = " + type + " + " + amount + " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
-
-
-            db.execSQL("INSERT " + TABLE_FOOD + " SET " + type + " = " + type + " + " + portionSize + " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
 
         }
     }
 
     // Update daily steps
-    public void stepsUpdate(int steps){
+    public void stepsUpdate(int steps, float calBurned){
         SQLiteDatabase db = this.getWritableDatabase();
         String date = new SimpleDateFormat("dd-MM-yyyy", Locale.UK).format(new Date());
         if (recordExistsExercise(date)){
-            db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " + EXERCISE_STEPS + " = " + steps + " WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
+            db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " + EXERCISE_STEPS + " = " + steps + ","+ EXERCISE_BURNED +" = "+calBurned+" WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
         }
         else{
-
-            db.execSQL("INSERT " + TABLE_EXERCISE + " SET " + EXERCISE_STEPS + " = " + steps + " WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
+            //insert everything null then update the column we want
+           // db.execSQL("INSERT " + TABLE_EXERCISE + " SET " + EXERCISE_STEPS + " = " + steps + " WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
         }
     }
 
@@ -207,7 +210,7 @@ public class DBHandler extends SQLiteOpenHelper {
         }
         else{
 
-            db.execSQL("INSERT " + TABLE_EXERCISE + " SET " + EXERCISE_BURNED + " = " + kcal + " WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
+            //db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " + EXERCISE_BURNED + " = " + kcal + " WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
         }
     }
 
