@@ -33,12 +33,10 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String USER_WEIGHT= "WEIGHT";         // in kg/other
     public static final String USER_ID = "ID";
     public static final String USER_NAME = "NAME";
-    //public static final String USER_GOAL = "GOAL";           // daily targets?
+    public static final String USER_GOAL = "GOAL";           // daily targets?
 
     // Food Data Table
     public static final String TABLE_FOOD= "FOOD";
-  //  public static final String DCOL_1 = "DATE";           // primary key
-  //  public static final String DCOL_2 = "FAT_INTAKE";
    public static final String  FOOD_PROTEIN = "PROTEIN_INTAKE";
     public static final String FOOD_DAIRY = "DAIRY_INTAKE";
     public static final String FOOD_FRUIT_VEG = "FRUIT_VEG_INTAKE";
@@ -46,9 +44,6 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String FOOD_ALCOHOL = "ALCOHOL_INTAKE";
     public static final String FOOD_WATER = "WATER_INTAKE";
     public static final String FOOD_THREATS = "TREATS_INTAKE";
-
-
-
 
 
 
@@ -66,7 +61,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
                 +USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+ USER_NAME + "TEXT," +USER_AGE +"INTEGER,"
-                +USER_GENDER +"TEXT,"+USER_HEIGHT+"INTEGER," +USER_WEIGHT + "INTEGER" +");";
+                +USER_GENDER +"TEXT,"+USER_HEIGHT+"INTEGER," +USER_WEIGHT + "INTEGER" + USER_GOAL + "INTEGER" +");";
 
         String CREATE_FOOD_TABLE = "CREATE TABLE " + TABLE_FOOD + "("
                 +FOOD_PROTEIN  + "INTEGER," + FOOD_ALCOHOL + "INTEGER," +FOOD_CARBS + "INTEGER,"
