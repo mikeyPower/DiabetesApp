@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class Profile extends AppCompatActivity {
@@ -54,6 +55,9 @@ public class Profile extends AppCompatActivity {
         for(int i = 0; i < editButtons.length; i++){
             buttonName = "button_" + labelNames[i];
             editButtons[i] = (ImageButton) (findViewById( getResources().getIdentifier(buttonName,"id",getPackageName())));
+            if(i == 4){
+                editButtons[i].setClickable(false);
+            }
         }
 
         //setting up the edit buttons from name to weight, bmi is calculated automatically and does not need a button
@@ -128,6 +132,48 @@ public class Profile extends AppCompatActivity {
                 }
             });
         }
+
+        editButtons[5].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final View view = (LayoutInflater.from(context)).inflate(R.layout.fragment_male_female_picker,null);
+                final AlertDialog.Builder ad = new AlertDialog.Builder(context);
+                final RadioButton maleButton = (RadioButton) view.findViewById(R.id.male_button);
+                final RadioButton femaleButton = (RadioButton) view.findViewById(R.id.female_button);
+
+
+
+                maleButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        femaleButton.setChecked(false);
+                    }
+                });
+
+                femaleButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        maleButton.setChecked(false);
+                    }
+                });
+                ad.setCancelable(true);
+                ad.setView(view);
+
+                ad.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(maleButton.isChecked()){
+                            editor.putBoolean("isMale",true);
+                        }else if(femaleButton.isChecked()){
+                            editor.putBoolean("isMale",false);
+                        }
+                        updateLabels();
+                    }
+                });
+                ad.show();
+            }
+        });
+
         //Setting the text of the each label, loding the name, height, weight etc from SharedPreferences
         updateLabels();
     }

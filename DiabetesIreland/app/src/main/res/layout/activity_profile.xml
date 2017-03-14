@@ -167,7 +167,8 @@
                 android:layout_height="wrap_content"
                 app:srcCompat="@android:drawable/ic_menu_edit"
                 android:id="@+id/button_bmi"
-                android:layout_weight="5" />
+                android:layout_weight="5"
+                android:visibility="invisible" />
         </LinearLayout>
 
         <TextView
