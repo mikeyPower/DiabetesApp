@@ -69,7 +69,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         String CREATE_FOOD_TABLE = "CREATE TABLE " + TABLE_FOOD + "("
                 +FOOD_DATE + "TEXT,"
-                +FOOD_PROTEIN  + "INTEGER," + FOOD_ALCOHOL + "INTEGER," +FOOD_CARBS + "INTEGER,"
+                +FOOD_PROTEIN  + "INTEGER," + FOOD_WATER + "INTEGER" + FOOD_ALCOHOL + "INTEGER," +FOOD_CARBS + "INTEGER,"
                 +FOOD_FRUIT_VEG + "INTEGER," +FOOD_DAIRY + "INTEGER," + FOOD_THREATS + "INTEGER" +");";
 
 
@@ -107,7 +107,7 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String ROW1 = "INSERT INTO " + TABLE_USER  + " ("
                 + USER_NAME +", "+ USER_AGE + ", "+ USER_GENDER+", "+USER_HEIGHT+", "+USER_WEIGHT+") Values ( '" +name
-        +", "+gender+", "+height+", "+weight+"')";
+        +", "+age+", "+gender+", "+height+", "+weight+"')";
         db.execSQL(ROW1);
         db.close();
     }
@@ -156,7 +156,7 @@ public class DBHandler extends SQLiteOpenHelper {
         }
         else{
 
-            db.execSQL("UPDATE " + TABLE_FOOD + " SET " + type + " = " + type + " + " + portionSize + " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
+            db.execSQL("INSERT " + TABLE_FOOD + " SET " + type + " = " + type + " + " + portionSize + " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
         }
     }
 
@@ -169,7 +169,7 @@ public class DBHandler extends SQLiteOpenHelper {
         }
         else{
 
-            db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " + EXERCISE_STEPS + " = " + steps + " WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
+            db.execSQL("INSERT " + TABLE_EXERCISE + " SET " + EXERCISE_STEPS + " = " + steps + " WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
         }
     }
 
@@ -195,6 +195,26 @@ public class DBHandler extends SQLiteOpenHelper {
         boolean exists = cursor.moveToFirst();
         cursor.close();
         return exists;
+    }
+
+
+    // Add excersise that isn't walking
+    public void add_excercise(String type, int duration){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String date = new SimpleDateFormat("dd-MM-yyyy", Locale.UK).format(new Date());
+        int kcal = Calculate_cal(type, duration);
+        if (recordExistsExercise(date)){
+            db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " + EXERCISE_BURNED + " = " + kcal + " WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
+        }
+        else{
+
+            db.execSQL("INSERT " + TABLE_EXERCISE + " SET " + EXERCISE_BURNED + " = " + kcal + " WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
+        }
+    }
+
+    // TODO calculate clories burned for given excercise
+    public int Calculate_cal(String type, int duration){
+        return 0;
     }
 
 }
