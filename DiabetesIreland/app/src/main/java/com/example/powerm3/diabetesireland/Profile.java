@@ -35,7 +35,7 @@ public class Profile extends AppCompatActivity {
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPref.edit();
 
-        //instantiate arrays to store text labels and buttons
+        //instantiate arrays to store text labels and addButtons
         labels = new TextView[6];
         editButtons = new ImageButton[6];
 
@@ -60,7 +60,7 @@ public class Profile extends AppCompatActivity {
             }
         }
 
-        //setting up the edit buttons from name to weight, bmi is calculated automatically and does not need a button
+        //setting up the edit addButtons from name to weight, bmi is calculated automatically and does not need a button
         for(int i = 0; i < 4; i++){
             final int j = i;
             editButtons[i].setOnClickListener(new View.OnClickListener() {

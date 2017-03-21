@@ -39,7 +39,7 @@ public class Home extends AppCompatActivity {
         //retrieve the user's name stored in shared preferences
         userName = sharedPref.getString("name","");
 
-        //attach the buttons on the home screen to declared variables
+        //attach the addButtons on the home screen to declared variables
         profileButton = (ImageButton) findViewById(R.id.profile_button);
         infoButton = (ImageButton) findViewById(R.id.infoButton);
         trackerButton = (ImageButton) findViewById(R.id.tracker_button);

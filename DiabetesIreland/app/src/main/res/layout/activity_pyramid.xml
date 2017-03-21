@@ -11,538 +11,616 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.powerm3.diabetesireland.Pyramid">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_toLeftOf="@+id/button_pyramid_one"
-        android:layout_toStartOf="@+id/button_pyramid_one"
-        android:layout_alignParentBottom="true"
-        android:layout_alignTop="@+id/button_pyramid_one">
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:text="0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/pyramid_one"
-                android:layout_weight="0.305"
-                android:textSize="30sp"
-                android:textAlignment="textStart" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                app:srcCompat="@android:color/holo_red_dark"
-                android:id="@+id/bad0"
-                android:layout_weight="1" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5" />
-
-            <ImageButton
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_menu_add"
-                android:id="@+id/button_pyramid_one"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_width="50dp" />
-
-            <ImageButton
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_input_delete"
-                android:id="@+id/button_pyramid_one_sub"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_width="50dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:text="Food And Drink High In Fat, Sugar and Salt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/badText"
-                android:layout_weight="1"
-                android:textAlignment="center" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2.07" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:text="0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/pyramid_two"
-                android:layout_weight="0.19"
-                android:textSize="30sp"
-                android:textAlignment="textStart" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                app:srcCompat="@android:color/holo_orange_dark"
-                android:id="@+id/fat0"
-                android:layout_weight="1" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75" />
-
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_menu_add"
-                android:id="@+id/button_pyramid_two"
-                android:layout_below="@+id/button_pyramid_one"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-
-            <ImageButton
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_input_delete"
-                android:id="@+id/button_pyramid_two_sub"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_width="50dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:text="Fats, spreads and oils"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/fatText"
-                android:layout_weight="1"
-                android:textAlignment="center" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.38" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:text="0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/pyramid_three"
-                android:layout_weight="0.27"
-                android:textSize="30sp"
-                android:textAlignment="textStart" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                app:srcCompat="@android:color/holo_orange_light"
-                android:id="@+id/protein0"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                app:srcCompat="@android:color/holo_orange_light"
-                android:id="@+id/protein1"
-                android:layout_weight="1" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.75" />
-
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_menu_add"
-                android:id="@+id/button_pyramid_three"
-                android:layout_above="@+id/button_pyramid_four"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-
-            <ImageButton
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_input_delete"
-                android:id="@+id/button_pyramid_three_sub"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_width="50dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:text="Meat, poultry, fish, eggs and nuts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/proteinText"
-                android:layout_weight="1"
-                android:textAlignment="center" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:text="0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/pyramid_four"
-                android:layout_weight="0.32"
-                android:textSize="30sp"
-                android:textAlignment="textStart" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.6" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                app:srcCompat="@android:color/holo_blue_bright"
-                android:id="@+id/dairy0"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                app:srcCompat="@android:color/holo_blue_bright"
-                android:id="@+id/dairy1"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                app:srcCompat="@android:color/holo_blue_bright"
-                android:id="@+id/dairy2"
-                android:layout_weight="1" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.6" />
-
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_menu_add"
-                android:id="@+id/button_pyramid_four"
-                android:layout_above="@+id/button_pyramid_five"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-
-            <ImageButton
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_input_delete"
-                android:id="@+id/button_pyramid_four_sub"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_width="50dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:text="Milk, yogurt and cheese"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/dairyText"
-                android:layout_weight="1"
-                android:textAlignment="center" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.52" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:text="0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/pyramid_five"
-                android:layout_weight="0.46"
-                android:textSize="30sp"
-                android:textAlignment="textStart" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                app:srcCompat="@color/CarbBrown"
-                android:id="@+id/carb0"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                app:srcCompat="@color/CarbBrown"
-                android:id="@+id/carb1"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                app:srcCompat="@color/CarbBrown"
-                android:id="@+id/carb2"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                app:srcCompat="@color/CarbBrown"
-                android:id="@+id/carb3"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                app:srcCompat="@color/CarbBrown"
-                android:id="@+id/carb4"
-                android:layout_weight="1" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5" />
-
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_menu_add"
-                android:id="@+id/button_pyramid_five"
-                android:layout_above="@+id/button_pyramid_six_sub"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-
-            <ImageButton
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_input_delete"
-                android:id="@+id/button_pyramid_five_sub"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_width="50dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/carbText"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:text="Wholemeal cereals, potatoes, pasta and rice" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="3.59" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_gravity="center_vertical"
-            android:foregroundGravity="center_vertical"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:text="0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/pyramid_six"
-                android:layout_weight="0.54"
-                android:textSize="30sp"
-                android:textAlignment="textStart" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                app:srcCompat="@color/VegGreen"
-                android:id="@+id/veg0"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                app:srcCompat="@color/VegGreen"
-                android:id="@+id/veg1"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                app:srcCompat="@color/VegGreen"
-                android:id="@+id/veg2"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                app:srcCompat="@color/VegGreen"
-                android:id="@+id/veg3"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                app:srcCompat="@color/VegGreen"
-                android:id="@+id/veg4"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                app:srcCompat="@color/VegGreen"
-                android:id="@+id/veg5"
-                android:layout_weight="1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                app:srcCompat="@color/VegGreen"
-                android:id="@+id/veg6"
-                android:layout_weight="1" />
-
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_menu_add"
-                android:id="@+id/button_pyramid_six"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-
-            <ImageButton
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_input_delete"
-                android:id="@+id/button_pyramid_six_sub"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_width="50dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:text="Vegetables, salad and fruit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/vegText"
-                android:layout_weight="1"
-                android:textAlignment="center" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.52" />
-        </LinearLayout>
-
-        <Button
-            android:text="Reset"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/reset"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-    </LinearLayout>
+            android:layout_toLeftOf="@+id/button_pyramid_one"
+            android:layout_toStartOf="@+id/button_pyramid_one"
+            android:layout_alignParentBottom="true"
+            android:layout_alignTop="@+id/button_pyramid_one">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pyramid_one"
+                    android:layout_weight="0.305"
+                    android:textSize="30sp"
+                    android:textAlignment="textStart" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:srcCompat="@android:color/holo_red_dark"
+                    android:id="@+id/bad0"
+                    android:layout_weight="1" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5" />
+
+                <ImageButton
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/ic_menu_add"
+                    android:id="@+id/button_pyramid_one"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="50dp" />
+
+                <ImageButton
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/ic_input_delete"
+                    android:id="@+id/button_pyramid_one_sub"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="50dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:text="Food And Drink High In Fat, Sugar and Salt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/badText"
+                    android:layout_weight="1"
+                    android:textAlignment="center" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.07" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pyramid_two"
+                    android:layout_weight="0.19"
+                    android:textSize="30sp"
+                    android:textAlignment="textStart" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:srcCompat="@android:color/holo_orange_dark"
+                    android:id="@+id/fat0"
+                    android:layout_weight="1" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75" />
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/ic_menu_add"
+                    android:id="@+id/button_pyramid_two"
+                    android:layout_below="@+id/button_pyramid_one"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <ImageButton
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/ic_input_delete"
+                    android:id="@+id/button_pyramid_two_sub"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="50dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:text="Fats, spreads and oils"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fatText"
+                    android:layout_weight="1"
+                    android:textAlignment="center" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.38" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pyramid_three"
+                    android:layout_weight="0.27"
+                    android:textSize="30sp"
+                    android:textAlignment="textStart" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:srcCompat="@android:color/holo_orange_light"
+                    android:id="@+id/protein0"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:srcCompat="@android:color/holo_orange_light"
+                    android:id="@+id/protein1"
+                    android:layout_weight="1" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75" />
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/ic_menu_add"
+                    android:id="@+id/button_pyramid_three"
+                    android:layout_above="@+id/button_pyramid_four"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <ImageButton
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/ic_input_delete"
+                    android:id="@+id/button_pyramid_three_sub"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="50dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:text="Meat, poultry, fish, eggs and nuts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/proteinText"
+                    android:layout_weight="1"
+                    android:textAlignment="center" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pyramid_four"
+                    android:layout_weight="0.32"
+                    android:textSize="30sp"
+                    android:textAlignment="textStart" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:srcCompat="@android:color/holo_blue_bright"
+                    android:id="@+id/dairy0"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:srcCompat="@android:color/holo_blue_bright"
+                    android:id="@+id/dairy1"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:srcCompat="@android:color/holo_blue_bright"
+                    android:id="@+id/dairy2"
+                    android:layout_weight="1" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6" />
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/ic_menu_add"
+                    android:id="@+id/button_pyramid_four"
+                    android:layout_above="@+id/button_pyramid_five"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <ImageButton
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/ic_input_delete"
+                    android:id="@+id/button_pyramid_four_sub"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="50dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:text="Milk, yogurt and cheese"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/dairyText"
+                    android:layout_weight="1"
+                    android:textAlignment="center" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.52" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pyramid_five"
+                    android:layout_weight="0.46"
+                    android:textSize="30sp"
+                    android:textAlignment="textStart" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:srcCompat="@color/CarbBrown"
+                    android:id="@+id/carb0"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:srcCompat="@color/CarbBrown"
+                    android:id="@+id/carb1"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:srcCompat="@color/CarbBrown"
+                    android:id="@+id/carb2"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:srcCompat="@color/CarbBrown"
+                    android:id="@+id/carb3"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:srcCompat="@color/CarbBrown"
+                    android:id="@+id/carb4"
+                    android:layout_weight="1" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5" />
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/ic_menu_add"
+                    android:id="@+id/button_pyramid_five"
+                    android:layout_above="@+id/button_pyramid_six_sub"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <ImageButton
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/ic_input_delete"
+                    android:id="@+id/button_pyramid_five_sub"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="50dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/carbText"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:text="Wholemeal cereals, potatoes, pasta and rice" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3.59" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_gravity="center_vertical"
+                android:foregroundGravity="center_vertical"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pyramid_six"
+                    android:layout_weight="0.54"
+                    android:textSize="30sp"
+                    android:textAlignment="textStart" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:srcCompat="@color/VegGreen"
+                    android:id="@+id/veg0"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:srcCompat="@color/VegGreen"
+                    android:id="@+id/veg1"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:srcCompat="@color/VegGreen"
+                    android:id="@+id/veg2"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:srcCompat="@color/VegGreen"
+                    android:id="@+id/veg3"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:srcCompat="@color/VegGreen"
+                    android:id="@+id/veg4"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:srcCompat="@color/VegGreen"
+                    android:id="@+id/veg5"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    app:srcCompat="@color/VegGreen"
+                    android:id="@+id/veg6"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/ic_menu_add"
+                    android:id="@+id/button_pyramid_six"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <ImageButton
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/ic_input_delete"
+                    android:id="@+id/button_pyramid_six_sub"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="50dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:text="Vegetables, salad and fruit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/vegText"
+                    android:layout_weight="1"
+                    android:textAlignment="center" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.52" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pyramid_seven"
+                    android:layout_weight="1"
+                    android:textSize="30sp"
+                    android:textAlignment="textStart" />
+
+                <ProgressBar
+                    style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/water_progress"
+                    android:layout_weight="10" />
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/ic_menu_add"
+                    android:id="@+id/button_pyramid_seven"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_weight=".01" />
+
+                <ImageButton
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/ic_input_delete"
+                    android:id="@+id/button_pyramid_seven_sub"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="50dp"
+                    android:layout_weight=".01" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Water"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/waterText"
+                    android:layout_weight="1"
+                    android:textAlignment="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Calories:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/calorie_display"
+                    android:layout_weight="1"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <Button
+                android:text="Reset"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/reset"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
