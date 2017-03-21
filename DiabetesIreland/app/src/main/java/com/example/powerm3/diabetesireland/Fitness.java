@@ -63,10 +63,7 @@ public class Fitness extends AppCompatActivity implements SensorEventListener  {
         }
 
         if (sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
-            textView.setText("Step Counter Detected : " + value);
-        } else if (sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
-            // For test only. Only allowed value is 1.0 i.e. for step taken
-            textView.setText("Step Detector Detected : " + value);
+            textView.setText("Steps Counted  = " + value);
         }
     }
 
