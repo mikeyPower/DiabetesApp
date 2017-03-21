@@ -2,5 +2,14 @@
     <string name="app_name">DiabetesIreland</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="step_counter">
+         android.hardware.sensor.stepcounter
+   </string>
+
+
+    <string name="step_detector">
+         android.hardware.sensor.stepdetector
+   </string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -21,7 +21,13 @@
         <activity android:name=".Home" />
         <activity android:name=".Information" />
         <activity android:name=".Pyramid" />
+        <activity android:name=".Fitness" />
         <activity android:name=".Profile"></activity>
+        <uses-feature
+            android:name="@string/step_detector" android:required="false"/>
+
+        <uses-feature
+            android:name="@string/step_counter" android:required="false"/>
     </application>
 
 </manifest>
