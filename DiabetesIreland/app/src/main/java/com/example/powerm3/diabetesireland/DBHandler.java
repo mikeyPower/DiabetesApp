@@ -63,7 +63,9 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String EXERCISE_DURATION = "DURATION";
 
     public DBHandler(Context context) {
+
         super(context, DB_NAME, null, DB_VERSION);
+
     }
 
     @Override
@@ -76,7 +78,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String CREATE_FOOD_TABLE = "CREATE TABLE " + TABLE_FOOD + "("
                 +FOOD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 +FOOD_DATE + "TEXT,"
-                +FOOD_PROTEIN  + "INTEGER," + FOOD_WATER + "INTEGER" + FOOD_ALCOHOL + "INTEGER," +FOOD_CARBS + "INTEGER,"
+                +FOOD_PROTEIN  + "INTEGER," + FOOD_WATER + "INTEGER," + FOOD_ALCOHOL + "INTEGER," +FOOD_CARBS + "INTEGER,"
                 +FOOD_FRUIT_VEG + "INTEGER," +FOOD_DAIRY + "INTEGER," + FOOD_THREATS + "INTEGER,"
                 + "FOREIGN KEY ("+FOOD_FOREIGN_ID+") REFERENCES " + TABLE_USER +" ("+USER_ID+")"
                 +");";
@@ -170,6 +172,21 @@ public class DBHandler extends SQLiteOpenHelper {
             //insert everything null then update the column we want
           //  db.execSQL("UPDATE " +  TABLE_FOOD+ " SET " + type + " = " +  amount + " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
 
+            String ROW1 = "INSERT INTO " + TABLE_FOOD  + " ("
+                    +FOOD_DATE + ","
+                    +FOOD_PROTEIN  + "," + FOOD_WATER + "" + FOOD_ALCOHOL + "," +FOOD_CARBS + ","
+                    +FOOD_FRUIT_VEG + "," +FOOD_DAIRY + "," + FOOD_THREATS + ","
+                    +FOOD_FOREIGN_ID
+
+
+                    +") Values ( '" +date
+                    +", "+null+", "+null+", "+null+", "+null+", "+", "+null+", "
+                    +", "+null+", "+", "+null+","+1+"')";
+            db.execSQL(ROW1);
+
+
+            db.execSQL("UPDATE " +  TABLE_FOOD+ " SET " + type + " = " +  amount +","+ FOOD_CALORIES + " = "+calSize+ " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
+            db.close();
 
         }
     }
@@ -189,6 +206,9 @@ public class DBHandler extends SQLiteOpenHelper {
                     +EXERCISE_BURNED+", "+EXERCISE_STEPS+ ", " + EXERCISE_FOREIGN_ID+") Values ( '" +date
                     +", "+null+", "+null+", "+calBurned+", "+steps+", "+1+"')";
             db.execSQL(ROW1);
+
+
+            db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " + EXERCISE_STEPS + " = " + steps + ","+ EXERCISE_BURNED +" = "+calBurned+" WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
             db.close();
         }
     }
