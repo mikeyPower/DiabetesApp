@@ -39,28 +39,71 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // Food Data Table
     public static final String TABLE_FOOD= "FOOD";
-    public static final String  FOOD_PROTEIN = "PROTEIN_INTAKE";
+    public static final String  FOOD_PROTEIN = "PROTEIN";
     public static final String FOOD_DAIRY = "DAIRY_INTAKE";
-    public static final String FOOD_FRUIT_VEG = "FRUIT_VEG_INTAKE";
-    public static final String FOOD_CARBS = "CARBOHYDRATE_INTAKE";
-    public static final String FOOD_ALCOHOL = "ALCOHOL_INTAKE";
-    public static final String FOOD_WATER = "WATER_INTAKE";
-    public static final String FOOD_THREATS = "TREATS_INTAKE";
-    public static final String FOOD_DATE = "DATE_FOOD";
+    public static final String FOOD_FRUIT_VEG = "FRUIT_VEG";
+    public static final String FOOD_CARBS = "CARBOHYDRATE";
+    public static final String FOOD_ALCOHOL = "ALCOHOL";
+    public static final String FOOD_WATER = "WATER";
+    public static final String FOOD_THREATS = "TREATS";
+    public static final String FOOD_DATE = "DATE";
     public static final String FOOD_CALORIES = "CAL";
-    public static final String FOOD_ID = "FoodID";
+    public static final String FOOD_ROW_ID = "FoodID";
     public static final String FOOD_FOREIGN_ID = "Food_Foreign_ID";
 
 
     //Exercise Data Table
     public static final String TABLE_EXERCISE = "EXERCISE";
     public static final String EXERCISE_STEPS = "STEPS";                // calories burned stored in db?
-    public static final String EXERCISE_BURNED = "BURNED";
+    public static final String EXERCISE_TOTAL_BURNED = "BURNED";
     public static final String EXERCISE_DATE = "DATE_EXERCISE";
-    public static final String EXERCISE_ID = "ExerciseID";
+    public static final String EXERCISE_ROW_ID = "ExerciseID";
     public static final String EXERCISE_FOREIGN_ID = "ExerciseForeignID";
-    public static final String EXERCISE_TYPE ="TYPE";
     public static final String EXERCISE_DURATION = "DURATION";
+
+    public static final String EXERCISE_TYPE_AEROBICS ="AEROBICS";
+    public static final String EXERCISE_TYPE_ARCHERY ="ARCHERY";
+    public static final String EXERCISE_TYPE_BACKPACKING ="BACKPACKING";
+    public static final String EXERCISE_TYPE_HIKING ="HIKING";
+    public static final String EXERCISE_TYPE_BADMINTON ="BADMINTON";
+    public static final String EXERCISE_TYPE_DANCING ="DANCING";
+    public static final String EXERCISE_TYPE_BALLROOM ="BALLROOM DANCING";
+    public static final String EXERCISE_TYPE_BASKETBALL ="BASKETBALL";
+    public static final String EXERCISE_TYPE_BOWLING ="BOWLING";
+    public static final String EXERCISE_TYPE_BOXING ="BOXING";
+    public static final String EXERCISE_TYPE_CALISTHENICS ="CALISTHENICS";
+    public static final String EXERCISE_TYPE_CANOEING ="CANOEING";
+    public static final String EXERCISE_TYPE_ROWING ="ROWING";
+    public static final String EXERCISE_TYPE_CARPENTRY ="CARPENTRY";
+    public static final String EXERCISE_TYPE_CARRYING ="CARRYING INFANT";
+    public static final String EXERCISE_TYPE_CHILDREN ="CHILDREN'S GAMES";
+    public static final String EXERCISE_TYPE_CIRCUIT ="CIRCUIT TRAINING";
+    public static final String EXERCISE_TYPE_CLEANING ="CLEANING";
+    public static final String EXERCISE_TYPE_CLIMBING ="CLIMBING HILLS";
+    public static final String EXERCISE_TYPE_CONSTRUCTION ="CONSTRUCTION";
+    public static final String EXERCISE_TYPE_CRICKET ="CRICKET";
+    public static final String EXERCISE_TYPE_CROQUET ="CROQUET";
+    public static final String EXERCISE_TYPE_CURLING ="CURLING";
+    public static final String EXERCISE_TYPE_CYCLING ="CYCLING";
+    public static final String EXERCISE_TYPE_DARTS ="DARTS";
+    public static final String EXERCISE_TYPE_DRIVING ="DRIVING";
+    public static final String EXERCISE_TYPE_DOWNHILL ="DOWNHILL SNOW SKIING";
+    public static final String EXERCISE_TYPE_FARMING ="FARMING";
+    public static final String EXERCISE_TYPE_FENCING ="FENCING";
+    public static final String EXERCISE_TYPE_FISHING ="FISHING";
+    public static final String EXERCISE_TYPE_FOOTBALL ="FOOTBALL";
+    public static final String EXERCISE_TYPE_FORESTRY ="FORESTRY";
+    public static final String EXERCISE_TYPE_FRISBEE ="FRISBEE";
+    public static final String EXERCISE_TYPE_GARDENING ="GARDENING";
+    public static final String EXERCISE_TYPE_GOLF ="GOLF";
+    public static final String EXERCISE_TYPE_TENIS ="TENIS";
+    public static final String EXERCISE_TYPE_WALKING ="WALKING";
+    public static final String EXERCISE_TYPE_SWIMMING ="SWIMMING LAPS";
+    public static final String EXERCISE_TYPE_WATER ="WATER POLO";
+    public static final String EXERCISE_TYPE_RUGBY ="RUGBY";
+    public static final String EXERCISE_TYPE_MARTIAL ="MARTIAL ARTS";
+    public static final String EXERCISE_TYPE_WEIGHT ="WEIGHT LIFTING";
+
 
     public DBHandler(Context context) {
 
@@ -76,7 +119,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 +USER_GENDER +"TEXT,"+USER_HEIGHT+"INTEGER," +USER_WEIGHT + "FLOAT" + USER_CALORIES + "INTEGER" +");";
 
         String CREATE_FOOD_TABLE = "CREATE TABLE " + TABLE_FOOD + "("
-                +FOOD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                +FOOD_ROW_ID + "INTEGER AUTOINCREMENT PRIMARY KEY,"
                 +FOOD_DATE + "TEXT,"
                 +FOOD_PROTEIN  + "INTEGER," + FOOD_WATER + "INTEGER," + FOOD_ALCOHOL + "INTEGER," +FOOD_CARBS + "INTEGER,"
                 +FOOD_FRUIT_VEG + "INTEGER," +FOOD_DAIRY + "INTEGER," + FOOD_THREATS + "INTEGER,"
@@ -85,10 +128,54 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
         String CREATE_EXERCISE_TABLE = "CREATE TABLE " + TABLE_EXERCISE + "("
-                +EXERCISE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+               +EXERCISE_ROW_ID + "PRIMARY KEY INTEGER AUTOINCREMENT,"
                 +EXERCISE_DATE + "TEXT,"
-                +EXERCISE_STEPS + "INTEGER," + EXERCISE_BURNED + "INTEGER,"
-                +EXERCISE_TYPE + "TEXT,"+ EXERCISE_DURATION + "INTEGER,"
+                + EXERCISE_TOTAL_BURNED + "FLOAT,"
+                + EXERCISE_DURATION + "INTEGER,"
+                +EXERCISE_STEPS + "INTEGER,"
+                +EXERCISE_TYPE_ARCHERY + "FLOAT,"
+                +EXERCISE_TYPE_AEROBICS + "FLOAT,"
+                +EXERCISE_TYPE_BACKPACKING + "FLOAT,"
+                +EXERCISE_TYPE_HIKING + "FLOAT,"
+                +EXERCISE_TYPE_BADMINTON + "FLOAT,"
+                +EXERCISE_TYPE_DANCING + "FLOAT,"
+                +EXERCISE_TYPE_BALLROOM + "FLOAT,"
+                +EXERCISE_TYPE_BASKETBALL + "FLOAT,"
+                +EXERCISE_TYPE_BOWLING + "FLOAT,"
+                +EXERCISE_TYPE_BOXING + "FLOAT,"
+                +EXERCISE_TYPE_CALISTHENICS + "FLOAT,"
+                +EXERCISE_TYPE_CANOEING + "FLOAT,"
+                +EXERCISE_TYPE_ROWING + "FLOAT,"
+                +EXERCISE_TYPE_CARPENTRY + "FLOAT,"
+                +EXERCISE_TYPE_CARRYING + "FLOAT,"
+                +EXERCISE_TYPE_CHILDREN + "FLOAT,"
+                +EXERCISE_TYPE_CIRCUIT + "FLOAT,"
+                +EXERCISE_TYPE_CLEANING+ "FLOAT,"
+                +EXERCISE_TYPE_CLIMBING + "FLOAT,"
+                +EXERCISE_TYPE_CONSTRUCTION + "FLOAT,"
+                +EXERCISE_TYPE_CRICKET + "FLOAT,"
+                +EXERCISE_TYPE_CROQUET + "FLOAT,"
+                +EXERCISE_TYPE_CURLING+ "FLOAT,"
+                +EXERCISE_TYPE_CYCLING + "FLOAT,"
+                +EXERCISE_TYPE_DARTS + "FLOAT,"
+                +EXERCISE_TYPE_DRIVING + "FLOAT,"
+                +EXERCISE_TYPE_DOWNHILL + "FLOAT,"
+                +EXERCISE_TYPE_FARMING + "FLOAT,"
+                +EXERCISE_TYPE_FENCING + "FLOAT,"
+                +EXERCISE_TYPE_FISHING+ "FLOAT,"
+                +EXERCISE_TYPE_FOOTBALL + "FLOAT,"
+                +EXERCISE_TYPE_FORESTRY + "FLOAT,"
+                +EXERCISE_TYPE_FRISBEE + "FLOAT,"
+                +EXERCISE_TYPE_GARDENING + "FLOAT,"
+                +EXERCISE_TYPE_GOLF + "FLOAT,"
+                +EXERCISE_TYPE_TENIS + "FLOAT,"
+                +EXERCISE_TYPE_WALKING + "FLOAT,"
+                +EXERCISE_TYPE_SWIMMING + "FLOAT,"
+                +EXERCISE_TYPE_WATER + "FLOAT,"
+                +EXERCISE_TYPE_RUGBY+ "FLOAT,"
+                +EXERCISE_TYPE_MARTIAL + "FLOAT,"
+                +EXERCISE_TYPE_WEIGHT + "FLOAT,"
+
                 + "FOREIGN KEY ("+EXERCISE_FOREIGN_ID+") REFERENCES " + TABLE_USER +" ("+USER_ID+")"
                 + ");";
 
@@ -158,30 +245,22 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
 
-    
+
 
     // Update daily data with food intake
-    public void updateDailyFood(float calSize, String type, int amount) {
+    public void updateDailyFood(float calSize, String type, int amount, String date) {
         // currently only updating current day's data
         SQLiteDatabase db = this.getWritableDatabase();
-        String date = new SimpleDateFormat("dd-MM-yyyy", Locale.UK).format(new Date());
         if (recordExistsFood(date)){
             db.execSQL("UPDATE " +  TABLE_FOOD+ " SET " + type + " = " +  amount +","+ FOOD_CALORIES + " = "+calSize+ " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
         }
         else{
-            //insert everything null then update the column we want
-          //  db.execSQL("UPDATE " +  TABLE_FOOD+ " SET " + type + " = " +  amount + " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
 
             String ROW1 = "INSERT INTO " + TABLE_FOOD  + " ("
                     +FOOD_DATE + ","
-                    +FOOD_PROTEIN  + "," + FOOD_WATER + "" + FOOD_ALCOHOL + "," +FOOD_CARBS + ","
-                    +FOOD_FRUIT_VEG + "," +FOOD_DAIRY + "," + FOOD_THREATS + ","
                     +FOOD_FOREIGN_ID
-
-
                     +") Values ( '" +date
-                    +", "+null+", "+null+", "+null+", "+null+", "+", "+null+", "
-                    +", "+null+", "+", "+null+","+1+"')";
+                    +", "+1+"')";
             db.execSQL(ROW1);
 
 
@@ -196,19 +275,25 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String date = new SimpleDateFormat("dd-MM-yyyy", Locale.UK).format(new Date());
         if (recordExistsExercise(date)){
-            db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " + EXERCISE_STEPS + " = " + steps + ","+ EXERCISE_BURNED +" = "+calBurned+" WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
+            db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " + EXERCISE_STEPS + " = " + steps + ","+ EXERCISE_TOTAL_BURNED +" = "+calBurned+" WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
         }
         else{
 
 
             String ROW1 = "INSERT INTO " + TABLE_EXERCISE  + " ("
-                    + EXERCISE_DATE +", "+ EXERCISE_TYPE + ", "+ EXERCISE_DURATION+", "
-                    +EXERCISE_BURNED+", "+EXERCISE_STEPS+ ", " + EXERCISE_FOREIGN_ID+") Values ( '" +date
-                    +", "+null+", "+null+", "+calBurned+", "+steps+", "+1+"')";
+                    + EXERCISE_DATE +", "
+                    +EXERCISE_TOTAL_BURNED+", "
+                    +EXERCISE_STEPS+ ", "
+
+                    + EXERCISE_FOREIGN_ID+") Values ( '" +date +", "
+
+                    +calBurned+", "
+                    +steps+", "
+                  +1+"')";
             db.execSQL(ROW1);
 
 
-            db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " + EXERCISE_STEPS + " = " + steps + ","+ EXERCISE_BURNED +" = "+calBurned+" WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
+           // db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " + EXERCISE_STEPS + " = " + steps + ","+ EXERCISE_TOTAL_BURNED +" = "+calBurned+" WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
             db.close();
         }
     }
@@ -216,30 +301,46 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
     // Add excersise that isn't walking
-    public void add_excercise(String type, int duration, float burned){
+    public void add_excercise(String type, int duration, float burned, String date){
         SQLiteDatabase db = this.getWritableDatabase();
-        String date = new SimpleDateFormat("dd-MM-yyyy", Locale.UK).format(new Date());
-        // int kcal = Calculate_cal(type, duration);
+
+        int sumDuration = getExerciseDuration(date) + duration;
+        float sumBurned = getTotalExerciseBurned(date)+ burned;
         if (recordExistsExercise(date)){
-            db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " + EXERCISE_BURNED + " = " + burned + " WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
+
+            db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " + type + " = " + sumBurned +"," +EXERCISE_DURATION+" = "+sumDuration+ " WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
         }
         else{
             String ROW1 = "INSERT INTO " + TABLE_EXERCISE  + " ("
-                    + EXERCISE_DATE +", "+ EXERCISE_TYPE + ", "+ EXERCISE_DURATION+", "
-                    +EXERCISE_BURNED+", "+EXERCISE_STEPS+ ", " + EXERCISE_FOREIGN_ID+") Values ( '" +date
-                    +", "+type+", "+duration+", "+burned+", "+null+", "+1+"')";
+                    + EXERCISE_DATE +", "
+                    + EXERCISE_FOREIGN_ID+") Values ( '" +date
+                    +", "
+                   +1+"')";
             db.execSQL(ROW1);
+
+
+            db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " +type + " = " + sumBurned +" WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
             db.close();
         }
     }
 
 
 
+    public void deleteWeekExercise ()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("DELETE FROM " + TABLE_EXERCISE + "WHERE "+ EXERCISE_ROW_ID+ " BEWTEEN "+ 1 + " AND "+ 7);
+    }
 
 
 
+    public void deleteFoodWeek ()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
 
-
+        db.execSQL("DELETE FROM " + TABLE_FOOD + "WHERE "+ FOOD_ROW_ID+ " BEWTEEN "+ 1 + " AND "+ 7);
+    }
 
 
 
@@ -262,21 +363,6 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
 
-
-
-
-
-    // method to check if column (date) exists in db
-  /*  public boolean recordExistsFood(String date){
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT 1 FROM "
-                + TABLE_FOOD + " WHERE " + FOOD_DATE + "=?";
-        Cursor cursor = db.rawQuery(query, new String[] {date});
-        boolean exists = cursor.moveToFirst();
-        cursor.close();
-        return exists;
-    }
-*/
 
     public boolean recordExistsExercise(String date){
         SQLiteDatabase sqldb = this.getReadableDatabase();
@@ -303,32 +389,48 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
 
+    public int howManyDaysFood()
+    {
+        SQLiteDatabase sqldb = this.getReadableDatabase();
+        String Query = "select count(*) from " + TABLE_FOOD;
+        Cursor cursor = sqldb.rawQuery(Query, null);
+        int cnt = cursor.getCount();
+        cursor.close();
+        return cnt;
+    }
 
 
+    public int howManyDaysExercise()
+    {
+        SQLiteDatabase sqldb = this.getReadableDatabase();
+        String Query = "select count(*) from " + TABLE_EXERCISE;
+        Cursor cursor = sqldb.rawQuery(Query, null);
+        int cnt = cursor.getCount();
+        cursor.close();
+        return cnt;
+    }
 
+    public int getExerciseDuration(String date)
+    {
 
+        SQLiteDatabase sqldb = this.getReadableDatabase();
+        String Query = "select "+EXERCISE_DURATION+" from " + TABLE_EXERCISE+" WHERE " + EXERCISE_DATE + " = " + '"'+date+'"';
+        Cursor cursor = sqldb.rawQuery(Query, null);
+        int cnt = cursor.getInt(4);
+        cursor.close();
+        return cnt;
+    }
 
+        public float getTotalExerciseBurned(String date)
+    {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        SQLiteDatabase sqldb = this.getReadableDatabase();
+        String Query = "select "+EXERCISE_TOTAL_BURNED+" from " + TABLE_EXERCISE+" WHERE " + EXERCISE_DATE + " = " + '"'+date+'"';
+        Cursor cursor = sqldb.rawQuery(Query, null);
+        float cnt = cursor.getFloat(3);
+        cursor.close();
+        return cnt;
+    }
 
 
 
