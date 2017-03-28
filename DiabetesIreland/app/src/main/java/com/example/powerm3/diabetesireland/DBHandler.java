@@ -13,7 +13,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -55,6 +57,13 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String EXERCISE_STEPS = "STEPS";                // calories burned stored in db?
     public static final String EXERCISE_BURNED = "BURNED";
     public static final String EXERCISE_DATE = "DATE_EXERCISE";
+
+
+    // List of Exercises
+    public static final List<String> exercises = Arrays.asList(new String[] {"Aerobics", "Archery", "Backpacking/Hiking", "Badminton", "Basketball", "Bowling", "Boxing", "Calisthenics", "Canoeing", "Circuit training",
+            "Construction", "Cricket", "Croquet", "Curling", "Cycling", "Dancing", "Dancing, Ballroom", "Diving", "Farming", "Fencing", "Fishing", "Football",
+            "Forestry", "Frisbee", "Gardening", "Golf", "Martial arts", "Rowing", "Rugby", "Skiing", "Swimming", "Tennis", "Walking",
+            "Water polo", "Weight lifting"});
 
     public DBHandler(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -199,7 +208,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
     // Add excersise that isn't walking
-    public void add_excercise(String type, int duration){
+    public void add_excercise(int type, int duration){
         SQLiteDatabase db = this.getWritableDatabase();
         String date = new SimpleDateFormat("dd-MM-yyyy", Locale.UK).format(new Date());
         int kcal = Calculate_cal(type, duration);
@@ -213,7 +222,13 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     // TODO calculate clories burned for given excercise
-    public int Calculate_cal(String type, int duration){
+    public int Calculate_cal(int type, int duration){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String thth = "SELECT " + USER_WEIGHT + " FROM " + TABLE_USER;
+        String wei = "";
+        Cursor cursor = db.rawQuery(thth, new String[] {wei});
+        int weight = cursor.;
+        cursor.close();
         return 0;
     }
 
