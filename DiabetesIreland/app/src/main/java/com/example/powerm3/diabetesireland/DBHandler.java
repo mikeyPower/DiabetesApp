@@ -13,8 +13,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
+
+
 
 
 public class DBHandler extends SQLiteOpenHelper {
@@ -105,6 +110,156 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String EXERCISE_TYPE_WEIGHT ="WEIGHT LIFTING";
 
 
+
+
+
+    public static double[][] weightOrder = new double [4][35];
+    public void create2DArray(){
+        weightOrder[0][0] = 58;
+        weightOrder[1][0] = 70;
+        weightOrder[2][0] = 81;
+        weightOrder[3][0] = 92;
+        double[] calorieInfoArray = new double [] { 6.4,7.6,8.8,10,3.45,4.1,4.7,5.4,6.8,8.2,9.5,10.8,
+                4.4,5.2,6.1,7,5.9,7,8.2,9.3,3,3.5,4.1,4.7,8.8,10.6,12.2,14,3.5,4.1,4.8,5.4,3.9,4.7,5.5,6.2,7.9,
+                9.4,10.9,12.4,5.4,6.5,7.5,8.5,4.9,5.9,6.8,7.8,2.5,2.9,3.4,3.9,3.9,4.7,5.5,6.2,7.9,9.4,10.9,12.4,
+                //  Dancing
+                4.4
+                ,  5.3
+                , 6.1
+                ,7
+                //     Ballroom dancing
+                , 3.7
+                ,5
+                ,7
+                ,8
+                //      Diving
+                ,3
+                ,3.5
+                ,4.1
+                ,4.7
+                //        Farming, baling hay, cleaning barn
+                ,7.9
+                ,9.4
+                ,10.9
+                ,12.4
+                //        Fencing
+                , 5.9
+                ,7
+                , 8.2
+                ,9.3
+                //        Fishing
+                , 3
+                ,    3.5
+                ,   4.1
+                ,  4.7
+                //        Football
+                , 8.8
+                ,10.6
+                ,12.2
+                ,14
+                //        Forestry, ax chopping
+                ,  4.9
+                ,      5.9
+                ,     6.8
+                ,    7.8
+                //        Frisbee, ultimate frisbee
+                ,     7.9
+                ,     9.4
+                ,     10.9
+                ,     12.4
+                //        Gardening
+                ,     3.9
+                ,     4.7
+                ,     5.5
+                ,     6.2
+                //      Golf
+                ,     4.4
+                ,     5.3
+                ,     6.1
+                ,     7
+                //        Martial arts, kick boxing
+                ,     9.8
+                ,     11.7
+                ,     13.6
+                ,     15.5
+                //        Rowing
+                ,    6.9
+                ,    8.2
+                ,    9.5
+                ,    10.8
+                //        Rugby
+                ,    9.8
+                ,    11.7
+                ,    13.6
+                ,    15.5
+                //       Skiing
+                ,   5.9
+                ,  7
+                ,  8.2
+                , 9.3
+                //        Swimming laps
+                ,6.9
+                ,8.2
+                ,9.5
+                ,10.8
+                //       Tennis
+                ,7.9
+                ,9.4
+                ,10.9
+                ,12.4
+                //        Walking
+                ,3
+                ,3.5
+                ,4.1
+                ,4.7
+                //        Water polo
+                ,9.8
+                ,11.7
+                ,13.6
+                ,15.5
+                //        Weight lifting, workout
+                ,3.7
+                ,5.2
+                ,7.4
+                ,8.3 };
+
+        int j =0;
+        int i =0;
+        while(i < calorieInfoArray.length && j < 140){
+
+            weightOrder[0][i] = calorieInfoArray[j];
+            j++;
+            weightOrder[1][i] = calorieInfoArray[j];
+            j++;
+            weightOrder[2][i] = calorieInfoArray[j];
+            j++;
+            weightOrder[3][i] = calorieInfoArray[j];
+            j++;
+            i++;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // List of Exercises
+    public static final List<String> exercises = Arrays.asList(new String[] {"Aerobics", "Archery", "Backpacking/Hiking", "Badminton", "Basketball", "Bowling", "Boxing", "Calisthenics", "Canoeing", "Circuit training",
+            "Construction", "Cricket", "Croquet", "Curling", "Cycling", "Dancing", "Dancing, Ballroom", "Diving", "Farming", "Fencing", "Fishing", "Football",
+            "Forestry", "Frisbee", "Gardening", "Golf", "Martial arts", "Rowing", "Rugby", "Skiing", "Swimming", "Tennis", "Walking",
+            "Water polo", "Weight lifting"});
+
     public DBHandler(Context context) {
 
         super(context, DB_NAME, null, DB_VERSION);
@@ -185,6 +340,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_USER_TABLE);
         db.execSQL(CREATE_EXERCISE_TABLE);
         db.execSQL(CREATE_FOOD_TABLE);
+        create2DArray();
 
 
     }
@@ -348,8 +504,6 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
 
-
-
     public void deleteExerciseDate (String date)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -450,11 +604,26 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
 
+    public double Calculate_cal(int type, int duration){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String thth = "SELECT " + USER_WEIGHT + " FROM " + TABLE_USER;
+        Cursor cursor = db.rawQuery(thth, null);
+        int weight = cursor.getInt(6);
+        cursor.close();
 
+        int weightInd = 0;
+        if(weight < 70)
+            weightInd = 0;
+        else if(weight >= 70 && weight < 81)
+            weightInd = 1;
+        else if(weight >= 81 && weight < 92)
+            weightInd = 2;
+        else
+            weightInd = 3;
 
-    // TODO calculate clories burned for given excercise
-    public int Calculate_cal(String type, int duration){
-        return 0;
+        double burnt = weightOrder[weightInd][type];
+        burnt *= duration;
+        return burnt;
     }
 
 }
