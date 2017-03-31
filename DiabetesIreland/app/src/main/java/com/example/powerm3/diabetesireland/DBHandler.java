@@ -276,8 +276,10 @@ public class DBHandler extends SQLiteOpenHelper {
         String CREATE_FOOD_TABLE = "CREATE TABLE " + TABLE_FOOD + "("
                 +FOOD_ROW_ID + "INTEGER AUTOINCREMENT PRIMARY KEY,"
                 +FOOD_DATE + "TEXT,"
+                +FOOD_CALORIES + "INTEGER,"
                 +FOOD_PROTEIN  + "INTEGER," + FOOD_WATER + "INTEGER," + FOOD_ALCOHOL + "INTEGER," +FOOD_CARBS + "INTEGER,"
                 +FOOD_FRUIT_VEG + "INTEGER," +FOOD_DAIRY + "INTEGER," + FOOD_THREATS + "INTEGER,"
+
                 + "FOREIGN KEY ("+FOOD_FOREIGN_ID+") REFERENCES " + TABLE_USER +" ("+USER_ID+")"
                 +");";
 
@@ -404,11 +406,12 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
     // Update daily data with food intake
-    public void updateDailyFood(float calSize, String type, int amount, String date) {
+    public void updateDailyFood(int calSize, String type, int amount, String date) {
         // currently only updating current day's data
         SQLiteDatabase db = this.getWritableDatabase();
+        int sumCalorie = getTotalCalorie(date) + calSize;
         if (recordExistsFood(date)){
-            db.execSQL("UPDATE " +  TABLE_FOOD+ " SET " + type + " = " +  amount +","+ FOOD_CALORIES + " = "+calSize+ " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
+            db.execSQL("UPDATE " +  TABLE_FOOD+ " SET " + type + " = " +  amount +","+ FOOD_CALORIES + " = "+sumCalorie+ " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
         }
         else{
 
@@ -427,9 +430,10 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     // Update daily steps
-    public void stepsUpdate(int steps, float calBurned){
+    public void stepsUpdate(int steps, float calBurned, String date){
         SQLiteDatabase db = this.getWritableDatabase();
-        String date = new SimpleDateFormat("dd-MM-yyyy", Locale.UK).format(new Date());
+       // String date = new SimpleDateFormat("dd-MM-yyyy", Locale.UK).format(new Date());
+
         if (recordExistsExercise(date)){
             db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " + EXERCISE_STEPS + " = " + steps + ","+ EXERCISE_TOTAL_BURNED +" = "+calBurned+" WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
         }
@@ -582,6 +586,18 @@ public class DBHandler extends SQLiteOpenHelper {
         String Query = "select "+EXERCISE_TOTAL_BURNED+" from " + TABLE_EXERCISE+" WHERE " + EXERCISE_DATE + " = " + '"'+date+'"';
         Cursor cursor = sqldb.rawQuery(Query, null);
         float cnt = cursor.getFloat(3);
+        cursor.close();
+        return cnt;
+    }
+
+
+    public int getTotalCalorie(String date)
+    {
+
+        SQLiteDatabase sqldb = this.getReadableDatabase();
+        String Query = "select "+FOOD_CALORIES+" from " + TABLE_FOOD+" WHERE " + FOOD_DATE + " = " + '"'+date+'"';
+        Cursor cursor = sqldb.rawQuery(Query, null);
+        int cnt = cursor.getInt(3);
         cursor.close();
         return cnt;
     }
