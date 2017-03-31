@@ -225,8 +225,10 @@ public class Pyramid extends AppCompatActivity {
                 }
                 editor.remove("calories");
                 caloriesLabel.setText("Calories: " + 0);
-                //editor.clear();           //uncomment if you want reset button to reset all
+                editor.clear();           //uncomment if you want reset button to reset all
                 //                          //sharedPreferences
+                String DB_NAME = "DiabetesIreland";
+                context.deleteDatabase(DB_NAME);
                 editor.commit();
                 reset_pyramid();
 

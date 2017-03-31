@@ -1,6 +1,7 @@
 package com.example.powerm3.diabetesireland;
 
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,13 +9,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.content.Context;
 
 public class Fitness extends AppCompatActivity  {
     private TextView textView;
-
+    final Context context = this;
     Spinner spin;
     Button submit_button;
-
+    DBHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +25,7 @@ public class Fitness extends AppCompatActivity  {
         int steps = getIntent().getIntExtra("Current steps", 0);
         spin = (Spinner) findViewById(R.id.spinner);
         submit_button = (Button) findViewById(R.id.submit_button);
+        db = new DBHandler(context);
 
         textView.setText("Steps counted = " + steps);
 
@@ -36,6 +39,7 @@ public class Fitness extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 System.out.println(spin.getSelectedItemId());
+                System.out.println(db.Calculate_cal((int) spin.getSelectedItemId(),10));
             }
         });
     }

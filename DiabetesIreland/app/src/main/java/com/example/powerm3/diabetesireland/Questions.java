@@ -33,6 +33,7 @@ public class Questions extends AppCompatActivity {
     int h =1;
     int w =1;
     boolean isMale;
+    DBHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class Questions extends AppCompatActivity {
         editor = sharedPref.edit();
         isMale = true;
 
-
+        db = new DBHandler(context);
         name = (EditText) findViewById(R.id.editText);
         age = (EditText) findViewById(R.id.editText2);
         height = (EditText) findViewById(R.id.editText5);
@@ -108,8 +109,16 @@ public class Questions extends AppCompatActivity {
                     editor.putFloat("weight",(float) newUser.getWeight());
                     editor.putFloat("bmi",(float) newUser.getBMI());
                     System.out.println("BMI being stored is: " + newUser.getBMI());
+                    String gender;
+                    if(isMale){
+                        gender = "male";
+
+                    }else{
+                        gender = "female";
+                    }
                     editor.putBoolean("isMale",isMale);
                     editor.commit();
+                    db.addIndividual(newUser.getName(),newUser.getAge(),gender,(float) newUser.getHeight(),(float)newUser.getWeight(),2500);
                     Intent intent = new Intent(context, Home.class);
                     startActivity(intent);
 

@@ -24,12 +24,22 @@ public class Profile extends AppCompatActivity {
     String[] hints;
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
-
+    DBHandler db;
+    public static final String USER_AGE = "AGE";     // primary key
+    public static final String USER_GENDER = "GENDER";         // male / female
+    public static final String USER_HEIGHT = "HEIGHT";         // in metres or/and feet
+    public static final String USER_WEIGHT= "WEIGHT";         // in kg/other
+    public static final String USER_ID = "ID";
+    public static final String USER_NAME = "NAME";
+    public static final String USER_CALORIES = "GOAL";           // daily targets?
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        //set up database
+        db = new DBHandler(context);
 
         //set up shared preferences to load and update user data
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);

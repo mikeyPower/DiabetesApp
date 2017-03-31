@@ -81,7 +81,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String EXERCISE_TYPE_ROWING ="ROWING";
     public static final String EXERCISE_TYPE_CARPENTRY ="CARPENTRY";
     public static final String EXERCISE_TYPE_CARRYING ="CARRYING INFANT";
-    public static final String EXERCISE_TYPE_CHILDREN ="CHILDREN'S GAMES";
+    public static final String EXERCISE_TYPE_CHILDREN ="CHILDRENS GAMES";
     public static final String EXERCISE_TYPE_CIRCUIT ="CIRCUIT TRAINING";
     public static final String EXERCISE_TYPE_CLEANING ="CLEANING";
     public static final String EXERCISE_TYPE_CLIMBING ="CLIMBING HILLS";
@@ -109,150 +109,109 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String EXERCISE_TYPE_MARTIAL ="MARTIAL ARTS";
     public static final String EXERCISE_TYPE_WEIGHT ="WEIGHT LIFTING";
 
-
-
-
-
-    public static double[][] weightOrder = new double [4][35];
-    public void create2DArray(){
-        weightOrder[0][0] = 58;
-        weightOrder[1][0] = 70;
-        weightOrder[2][0] = 81;
-        weightOrder[3][0] = 92;
-        double[] calorieInfoArray = new double [] { 6.4,7.6,8.8,10,3.45,4.1,4.7,5.4,6.8,8.2,9.5,10.8,
-                4.4,5.2,6.1,7,5.9,7,8.2,9.3,3,3.5,4.1,4.7,8.8,10.6,12.2,14,3.5,4.1,4.8,5.4,3.9,4.7,5.5,6.2,7.9,
-                9.4,10.9,12.4,5.4,6.5,7.5,8.5,4.9,5.9,6.8,7.8,2.5,2.9,3.4,3.9,3.9,4.7,5.5,6.2,7.9,9.4,10.9,12.4,
-                //  Dancing
-                4.4
-                ,  5.3
-                , 6.1
-                ,7
-                //     Ballroom dancing
-                , 3.7
-                ,5
-                ,7
-                ,8
-                //      Diving
-                ,3
-                ,3.5
-                ,4.1
-                ,4.7
-                //        Farming, baling hay, cleaning barn
-                ,7.9
-                ,9.4
-                ,10.9
-                ,12.4
-                //        Fencing
-                , 5.9
-                ,7
-                , 8.2
-                ,9.3
-                //        Fishing
-                , 3
-                ,    3.5
-                ,   4.1
-                ,  4.7
-                //        Football
-                , 8.8
-                ,10.6
-                ,12.2
-                ,14
-                //        Forestry, ax chopping
-                ,  4.9
-                ,      5.9
-                ,     6.8
-                ,    7.8
-                //        Frisbee, ultimate frisbee
-                ,     7.9
-                ,     9.4
-                ,     10.9
-                ,     12.4
-                //        Gardening
-                ,     3.9
-                ,     4.7
-                ,     5.5
-                ,     6.2
-                //      Golf
-                ,     4.4
-                ,     5.3
-                ,     6.1
-                ,     7
-                //        Martial arts, kick boxing
-                ,     9.8
-                ,     11.7
-                ,     13.6
-                ,     15.5
-                //        Rowing
-                ,    6.9
-                ,    8.2
-                ,    9.5
-                ,    10.8
-                //        Rugby
-                ,    9.8
-                ,    11.7
-                ,    13.6
-                ,    15.5
-                //       Skiing
-                ,   5.9
-                ,  7
-                ,  8.2
-                , 9.3
-                //        Swimming laps
-                ,6.9
-                ,8.2
-                ,9.5
-                ,10.8
-                //       Tennis
-                ,7.9
-                ,9.4
-                ,10.9
-                ,12.4
-                //        Walking
-                ,3
-                ,3.5
-                ,4.1
-                ,4.7
-                //        Water polo
-                ,9.8
-                ,11.7
-                ,13.6
-                ,15.5
-                //        Weight lifting, workout
-                ,3.7
-                ,5.2
-                ,7.4
-                ,8.3 };
-
-        int j =0;
-        int i =0;
-        while(i < calorieInfoArray.length && j < 140){
-
-            weightOrder[0][i] = calorieInfoArray[j];
-            j++;
-            weightOrder[1][i] = calorieInfoArray[j];
-            j++;
-            weightOrder[2][i] = calorieInfoArray[j];
-            j++;
-            weightOrder[3][i] = calorieInfoArray[j];
-            j++;
-            i++;
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public static final double[] calorieInfoArray = new double [] { 6.4,7.6,8.8,10,3.45,4.1,4.7,5.4,6.8,8.2,9.5,10.8,
+            4.4,5.2,6.1,7,5.9,7,8.2,9.3,3,3.5,4.1,4.7,8.8,10.6,12.2,14,3.5,4.1,4.8,5.4,3.9,4.7,5.5,6.2,7.9,
+            9.4,10.9,12.4,5.4,6.5,7.5,8.5,4.9,5.9,6.8,7.8,2.5,2.9,3.4,3.9,3.9,4.7,5.5,6.2,7.9,9.4,10.9,12.4,
+            //  Dancing
+            4.4
+            ,  5.3
+            , 6.1
+            ,7
+            //     Ballroom dancing
+            , 3.7
+            ,5
+            ,7
+            ,8
+            //      Diving
+            ,3
+            ,3.5
+            ,4.1
+            ,4.7
+            //        Farming, baling hay, cleaning barn
+            ,7.9
+            ,9.4
+            ,10.9
+            ,12.4
+            //        Fencing
+            , 5.9
+            ,7
+            , 8.2
+            ,9.3
+            //        Fishing
+            , 3
+            ,    3.5
+            ,   4.1
+            ,  4.7
+            //        Football
+            , 8.8
+            ,10.6
+            ,12.2
+            ,14
+            //        Forestry, ax chopping
+            ,  4.9
+            ,      5.9
+            ,     6.8
+            ,    7.8
+            //        Frisbee, ultimate frisbee
+            ,     7.9
+            ,     9.4
+            ,     10.9
+            ,     12.4
+            //        Gardening
+            ,     3.9
+            ,     4.7
+            ,     5.5
+            ,     6.2
+            //      Golf
+            ,     4.4
+            ,     5.3
+            ,     6.1
+            ,     7
+            //        Martial arts, kick boxing
+            ,     9.8
+            ,     11.7
+            ,     13.6
+            ,     15.5
+            //        Rowing
+            ,    6.9
+            ,    8.2
+            ,    9.5
+            ,    10.8
+            //        Rugby
+            ,    9.8
+            ,    11.7
+            ,    13.6
+            ,    15.5
+            //       Skiing
+            ,   5.9
+            ,  7
+            ,  8.2
+            , 9.3
+            //        Swimming laps
+            ,6.9
+            ,8.2
+            ,9.5
+            ,10.8
+            //       Tennis
+            ,7.9
+            ,9.4
+            ,10.9
+            ,12.4
+            //        Walking
+            ,3
+            ,3.5
+            ,4.1
+            ,4.7
+            //        Water polo
+            ,9.8
+            ,11.7
+            ,13.6
+            ,15.5
+            //        Weight lifting, workout
+            ,3.7
+            ,5.2
+            ,7.4
+            ,8.3 };
 
     // List of Exercises
     public static final List<String> exercises = Arrays.asList(new String[] {"Aerobics", "Archery", "Backpacking/Hiking", "Badminton", "Basketball", "Bowling", "Boxing", "Calisthenics", "Canoeing", "Circuit training",
@@ -270,77 +229,84 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
-                +USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+ USER_NAME + "TEXT," +USER_AGE +"INTEGER,"
-                +USER_GENDER +"TEXT,"+USER_HEIGHT+"INTEGER," +USER_WEIGHT + "FLOAT" + USER_CALORIES + "INTEGER" +");";
+                +USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+ USER_NAME + " TEXT," +USER_AGE +" INTEGER,"
+                +USER_GENDER +" TEXT,"+USER_HEIGHT+" INTEGER," +USER_WEIGHT + " FLOAT," + USER_CALORIES + " INTEGER" +");";
 
         String CREATE_FOOD_TABLE = "CREATE TABLE " + TABLE_FOOD + "("
-                +FOOD_ROW_ID + "INTEGER AUTOINCREMENT PRIMARY KEY,"
-                +FOOD_DATE + "TEXT,"
-                +FOOD_CALORIES + "INTEGER,"
-                +FOOD_PROTEIN  + "INTEGER," + FOOD_WATER + "INTEGER," + FOOD_ALCOHOL + "INTEGER," +FOOD_CARBS + "INTEGER,"
-                +FOOD_FRUIT_VEG + "INTEGER," +FOOD_DAIRY + "INTEGER," + FOOD_THREATS + "INTEGER,"
+                +FOOD_ROW_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                +FOOD_FOREIGN_ID + " INTEGER,"
+                +FOOD_DATE + " TEXT,"
+                +FOOD_CALORIES + " INTEGER,"
+                +FOOD_PROTEIN  + " INTEGER,"
+                + FOOD_WATER + " INTEGER,"
+                + FOOD_ALCOHOL + " INTEGER,"
+                +FOOD_CARBS + " INTEGER,"
+                +FOOD_FRUIT_VEG + " INTEGER,"
+                +FOOD_DAIRY + " INTEGER,"
+                + FOOD_THREATS + " INTEGER,"
 
                 + "FOREIGN KEY ("+FOOD_FOREIGN_ID+") REFERENCES " + TABLE_USER +" ("+USER_ID+")"
                 +");";
 
 
-        String CREATE_EXERCISE_TABLE = "CREATE TABLE " + TABLE_EXERCISE + "("
-               +EXERCISE_ROW_ID + "PRIMARY KEY INTEGER AUTOINCREMENT,"
+        String CREATE_EXERCISE_TABLE = "CREATE TABLE " + TABLE_EXERCISE + " ("
+               +EXERCISE_ROW_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + EXERCISE_DURATION + " INTEGER,"
                 +EXERCISE_DATE + "TEXT,"
-                + EXERCISE_TOTAL_BURNED + "FLOAT,"
-                + EXERCISE_DURATION + "INTEGER,"
-                +EXERCISE_STEPS + "INTEGER,"
-                +EXERCISE_TYPE_ARCHERY + "FLOAT,"
-                +EXERCISE_TYPE_AEROBICS + "FLOAT,"
-                +EXERCISE_TYPE_BACKPACKING + "FLOAT,"
-                +EXERCISE_TYPE_HIKING + "FLOAT,"
-                +EXERCISE_TYPE_BADMINTON + "FLOAT,"
-                +EXERCISE_TYPE_DANCING + "FLOAT,"
-                +EXERCISE_TYPE_BALLROOM + "FLOAT,"
-                +EXERCISE_TYPE_BASKETBALL + "FLOAT,"
-                +EXERCISE_TYPE_BOWLING + "FLOAT,"
-                +EXERCISE_TYPE_BOXING + "FLOAT,"
-                +EXERCISE_TYPE_CALISTHENICS + "FLOAT,"
-                +EXERCISE_TYPE_CANOEING + "FLOAT,"
-                +EXERCISE_TYPE_ROWING + "FLOAT,"
-                +EXERCISE_TYPE_CARPENTRY + "FLOAT,"
-                +EXERCISE_TYPE_CARRYING + "FLOAT,"
-                +EXERCISE_TYPE_CHILDREN + "FLOAT,"
-                +EXERCISE_TYPE_CIRCUIT + "FLOAT,"
-                +EXERCISE_TYPE_CLEANING+ "FLOAT,"
-                +EXERCISE_TYPE_CLIMBING + "FLOAT,"
-                +EXERCISE_TYPE_CONSTRUCTION + "FLOAT,"
-                +EXERCISE_TYPE_CRICKET + "FLOAT,"
-                +EXERCISE_TYPE_CROQUET + "FLOAT,"
-                +EXERCISE_TYPE_CURLING+ "FLOAT,"
-                +EXERCISE_TYPE_CYCLING + "FLOAT,"
-                +EXERCISE_TYPE_DARTS + "FLOAT,"
-                +EXERCISE_TYPE_DRIVING + "FLOAT,"
-                +EXERCISE_TYPE_DOWNHILL + "FLOAT,"
-                +EXERCISE_TYPE_FARMING + "FLOAT,"
-                +EXERCISE_TYPE_FENCING + "FLOAT,"
-                +EXERCISE_TYPE_FISHING+ "FLOAT,"
-                +EXERCISE_TYPE_FOOTBALL + "FLOAT,"
-                +EXERCISE_TYPE_FORESTRY + "FLOAT,"
-                +EXERCISE_TYPE_FRISBEE + "FLOAT,"
-                +EXERCISE_TYPE_GARDENING + "FLOAT,"
-                +EXERCISE_TYPE_GOLF + "FLOAT,"
-                +EXERCISE_TYPE_TENIS + "FLOAT,"
-                +EXERCISE_TYPE_WALKING + "FLOAT,"
-                +EXERCISE_TYPE_SWIMMING + "FLOAT,"
-                +EXERCISE_TYPE_WATER + "FLOAT,"
-                +EXERCISE_TYPE_RUGBY+ "FLOAT,"
-                +EXERCISE_TYPE_MARTIAL + "FLOAT,"
-                +EXERCISE_TYPE_WEIGHT + "FLOAT,"
+                + EXERCISE_TOTAL_BURNED + " FLOAT,"
+                + EXERCISE_FOREIGN_ID + " INTEGER,"
+                +EXERCISE_STEPS + " INTEGER,"
+                +EXERCISE_TYPE_ARCHERY + " FLOAT,"
+                +EXERCISE_TYPE_AEROBICS + " FLOAT,"
+                +EXERCISE_TYPE_BACKPACKING + " FLOAT,"
+                +EXERCISE_TYPE_HIKING + " FLOAT,"
+                +EXERCISE_TYPE_BADMINTON + " FLOAT,"
+                +EXERCISE_TYPE_DANCING + " FLOAT,"
+                +EXERCISE_TYPE_BALLROOM + " FLOAT,"
+                +EXERCISE_TYPE_BASKETBALL + " FLOAT,"
+                +EXERCISE_TYPE_BOWLING + " FLOAT,"
+                +EXERCISE_TYPE_BOXING + " FLOAT,"
+                +EXERCISE_TYPE_CALISTHENICS + " FLOAT,"
+                +EXERCISE_TYPE_CANOEING + " FLOAT,"
+                +EXERCISE_TYPE_ROWING + " FLOAT,"
+                +EXERCISE_TYPE_CARPENTRY + " FLOAT,"
+                +EXERCISE_TYPE_CARRYING + " FLOAT,"
+                +EXERCISE_TYPE_CHILDREN + " FLOAT,"
+                +EXERCISE_TYPE_CIRCUIT + " FLOAT,"
+                +EXERCISE_TYPE_CLEANING+ " FLOAT,"
+                +EXERCISE_TYPE_CLIMBING + " FLOAT,"
+                +EXERCISE_TYPE_CONSTRUCTION + " FLOAT,"
+                +EXERCISE_TYPE_CRICKET + " FLOAT,"
+                +EXERCISE_TYPE_CROQUET + " FLOAT,"
+                +EXERCISE_TYPE_CURLING+ " FLOAT,"
+                +EXERCISE_TYPE_CYCLING + " FLOAT,"
+                +EXERCISE_TYPE_DARTS + " FLOAT,"
+                +EXERCISE_TYPE_DRIVING + " FLOAT,"
+                +EXERCISE_TYPE_DOWNHILL + " FLOAT,"
+                +EXERCISE_TYPE_FARMING + " FLOAT,"
+                +EXERCISE_TYPE_FENCING + " FLOAT,"
+                +EXERCISE_TYPE_FISHING+ " FLOAT,"
+                +EXERCISE_TYPE_FOOTBALL + " FLOAT,"
+                +EXERCISE_TYPE_FORESTRY + " FLOAT,"
+                +EXERCISE_TYPE_FRISBEE + " FLOAT,"
+                +EXERCISE_TYPE_GARDENING + " FLOAT,"
+                +EXERCISE_TYPE_GOLF + " FLOAT,"
+                +EXERCISE_TYPE_TENIS + " FLOAT,"
+                +EXERCISE_TYPE_WALKING + " FLOAT,"
+                +EXERCISE_TYPE_SWIMMING + " FLOAT,"
+                +EXERCISE_TYPE_WATER + " FLOAT,"
+                +EXERCISE_TYPE_RUGBY+ " FLOAT,"
+                +EXERCISE_TYPE_MARTIAL + " FLOAT,"
+                +EXERCISE_TYPE_WEIGHT + " FLOAT,"
 
-                + "FOREIGN KEY ("+EXERCISE_FOREIGN_ID+") REFERENCES " + TABLE_USER +" ("+USER_ID+")"
+                + " FOREIGN KEY ("+EXERCISE_FOREIGN_ID+") REFERENCES " + TABLE_USER +" ("+USER_ID+")"
                 + ");";
 
 
         db.execSQL(CREATE_USER_TABLE);
         db.execSQL(CREATE_EXERCISE_TABLE);
         db.execSQL(CREATE_FOOD_TABLE);
-        create2DArray();
+
 
 
     }
@@ -349,9 +315,9 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FOOD);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_EXERCISE);
+        db.execSQL(" DROP TABLE IF EXISTS " + TABLE_USER);
+        db.execSQL(" DROP TABLE IF EXISTS " + TABLE_FOOD);
+        db.execSQL(" DROP TABLE IF EXISTS " + TABLE_EXERCISE);
 // Creating tables again
         onCreate(db);
 
@@ -366,8 +332,8 @@ public class DBHandler extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
         String ROW1 = "INSERT INTO " + TABLE_USER  + " ("
-                + USER_NAME +", "+ USER_AGE + ", "+ USER_GENDER+", "+USER_HEIGHT+", "+USER_WEIGHT+ ", " + USER_CALORIES+") Values ( '" +name
-        +", "+age+", "+gender+", "+height+", "+weight+", "+calories+"')";
+                + USER_NAME +", "+ USER_AGE + ", "+ USER_GENDER+", "+USER_HEIGHT+", "+USER_WEIGHT+ ", " + USER_CALORIES+") " +
+                "Values ( " + "'" + name + "'" + ", "  + "'" +age+ "'" + ", " + "'" + gender + "'" +" ," + "'" +height+ "'" +", "+ "'" +weight+ "'" +", "+ "'" +calories+"')";
         db.execSQL(ROW1);
         db.close();
     }
@@ -607,8 +573,11 @@ public class DBHandler extends SQLiteOpenHelper {
     public double Calculate_cal(int type, int duration){
         SQLiteDatabase db = this.getWritableDatabase();
         String thth = "SELECT " + USER_WEIGHT + " FROM " + TABLE_USER;
+        System.out.println(thth);
         Cursor cursor = db.rawQuery(thth, null);
-        int weight = cursor.getInt(6);
+        cursor.moveToFirst();
+        int weight = cursor.getInt(0);
+        System.out.println("Weight = " + weight);
         cursor.close();
 
         int weightInd = 0;
@@ -621,9 +590,17 @@ public class DBHandler extends SQLiteOpenHelper {
         else
             weightInd = 3;
 
-        double burnt = weightOrder[weightInd][type];
+        //create2DArray();
+        int index = (type * 4) + weightInd;
+        double burnt = calorieInfoArray[index];
+        System.out.println("Burnt = " + burnt);
         burnt *= duration;
         return burnt;
     }
-
+    public String getUserName(){
+        SQLiteDatabase db = this.getReadableDatabase();
+            return "Biplanes";
+    }
 }
+
+
