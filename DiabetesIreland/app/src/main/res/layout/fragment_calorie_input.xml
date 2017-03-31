@@ -1,0 +1,31 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.powerm3.diabetesireland.calorie_input">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="Enter Calories Consumed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/calorie_label"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/calorie_input"
+            android:hint="Calories "
+            android:textAlignment="center" />
+    </LinearLayout>
+</FrameLayout>

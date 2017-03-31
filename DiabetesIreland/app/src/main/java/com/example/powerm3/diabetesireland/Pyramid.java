@@ -1,32 +1,42 @@
 package com.example.powerm3.diabetesireland;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 public class Pyramid extends AppCompatActivity {
 
+    final int NUMBER_OF_SECTIONS = 7;
+    Context context = this;
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
     TextView[] texts,foodTypeTexts;
     TextView badText,fatText,proteinText,dairyText,carbText,vegText;
     int[] ptext,maxes;
-    ImageButton[] buttons;
+    ImageButton[] addButtons;
     ImageButton[] subtractButtons;
     String[] str;
     ImageView[] veg,carb,dairy,protein,fat,bad;
     ImageView[][] foodArrays;
-    String[] foodTypes = new String[]{"bad","fat","protein","dairy","carb","veg"};
+    String[] foodTypes = new String[]{"bad","fat","protein","dairy","carb","veg","water"};
     Button reset;
+    TextView caloriesLabel;
+    ProgressBar water_progress;
+    int [][] calNumbers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,18 +45,54 @@ public class Pyramid extends AppCompatActivity {
         setContentView(R.layout.activity_pyramid);
 
 
-
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPref.edit();
 
         //set up arrays
-        str = new String[] {"one","two","three","four","five","six"};
-        maxes = new int[] {1,1,2,3,5,7};
-        ptext = new int[6];
-        texts = new TextView[6];
-        buttons = new ImageButton[6];
-        foodTypeTexts = new TextView[6];
-        subtractButtons = new ImageButton[6];
+        str = new String[] {"one","two","three","four","five","six","seven"};
+        maxes = new int[] {1,1,2,3,5,7,9};
+        ptext = new int[NUMBER_OF_SECTIONS];
+        texts = new TextView[NUMBER_OF_SECTIONS];
+        addButtons = new ImageButton[NUMBER_OF_SECTIONS];
+        foodTypeTexts = new TextView[NUMBER_OF_SECTIONS];
+        subtractButtons = new ImageButton[NUMBER_OF_SECTIONS];
+        calNumbers = new int[][]{
+                { 0 },
+                { 0 },
+                { 0, 0 },
+                { 0, 0, 0 },
+                { 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0 }
+        };
+
+        for(int i = 0; i < maxes.length - 1; i++){
+            for(int j = 0; j < maxes[i]; j++){
+                String fetchString = "calVal" + i + "-" + j;
+                int put = sharedPref.getInt(fetchString,0);
+                calNumbers[i][j] = put;
+            }
+        }
+
+        caloriesLabel = (TextView) findViewById(R.id.calorie_display);
+        water_progress = (ProgressBar) findViewById(R.id.water_progress);
+
+        water_progress.getProgressDrawable().setColorFilter(Color.BLUE, PorterDuff.Mode.MULTIPLY);
+        //set up water progress bar
+        boolean isMale = sharedPref.getBoolean("isMale",true);
+        int waterIn = sharedPref.getInt("water",0);
+        if(isMale) {
+            water_progress.setMax(13);
+            maxes[6] = 13;
+        }else{
+
+            maxes[6] = 9;
+            if(waterIn > 9){
+                water_progress.setProgress(9);
+                editor.putInt("water",9);
+                editor.commit();
+            }
+            water_progress.setMax(9);
+        }
 
         //set up number label for each bar on pyramid
         for(int i = 0; i < texts.length; i++){
@@ -58,39 +104,98 @@ public class Pyramid extends AppCompatActivity {
             String name = foodTypes[i] + "Text";
             foodTypeTexts[i] = (TextView) findViewById( ( getResources().getIdentifier(name, "id",getPackageName() ) ) );
         }
-        //set up add buttons
-        for(int i = 0; i < buttons.length; i++){
+        //set up add addButtons
+        for(int i = 0; i < addButtons.length; i++){
             String name = "button_pyramid_" + str[i];
-            buttons[i] = (ImageButton) findViewById( (getResources().getIdentifier(name, "id" , getPackageName())) );
+            addButtons[i] = (ImageButton) findViewById( (getResources().getIdentifier(name, "id" , getPackageName())) );
         }
-        //set up click actions for add buttons
-        for(int i = 0; i < buttons.length;i++){
+        //set up click actions for add addButtons
+        for(int i = 0; i < (addButtons.length - 1); i++){
             final int j = i;
-            System.out.println("Button = i");
-            buttons[i].setOnClickListener(new View.OnClickListener() {
+            //System.out.println("Button = i");
+            addButtons[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     update_label(j);
+
+                    final View view = (LayoutInflater.from(context)).inflate(R.layout.fragment_calorie_input,null);
+                    final AlertDialog.Builder ad = new AlertDialog.Builder(context);
+                    final EditText et = (EditText) view.findViewById(R.id.calorie_input);
+                    final TextView tv = (TextView) view.findViewById(R.id.calorie_label);
+
+                    ad.setCancelable(false);
+                    ad.setView(view);
+
+                    ad.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            int send;
+                            try{
+                                send = Integer.parseInt(et.getText().toString());
+                            }catch(Exception e){
+                                send = 0;
+                            }
+                            int currentCalories = sharedPref.getInt("calories",0);
+                            calNumbers[j][ptext[j] - 1] =  send;
+                            editor.putInt("calories",currentCalories + send);
+                            String putString = "calVal" + j + "-" + (ptext[j] - 1);
+                            editor.putInt(putString,send);
+                            editor.commit();
+                            int cal = sharedPref.getInt("calories",0);
+                            caloriesLabel.setText("Calories: " + Integer.toString(cal));
+                        }
+
+
+                    });
+                    ad.show();
                 }
             });
         }
-        //set up subtract buttons for pyramid bars
+
+        //set up subtract addButtons for pyramid bars
         for(int i = 0; i < subtractButtons.length; i++){
             String name = "button_pyramid_" + str[i] + "_sub";
             subtractButtons[i] = (ImageButton) findViewById( (getResources().getIdentifier(name,"id", getPackageName() ) ) );
         }
-        //set up actions for subtract buttons
-        for(int i = 0; i < subtractButtons.length; i++){
+        //set up actions for subtract addButtons
+        for(int i = 0; i < subtractButtons.length - 1; i++){
             final int j = i;
             subtractButtons[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     subtractlabel(j);
+                    int cal = sharedPref.getInt("calories", 0);
+                    cal -= calNumbers[j][ptext[j]];
+                    calNumbers[j][ptext[j]] = 0;
+                    editor.putInt("calories",cal);
+                    editor.commit();
+                    caloriesLabel.setText("Calories: " + Integer.toString(cal));
                 }
             });
         }
+
+        //set up click action for water add button
+        addButtons[6].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                water_progress.incrementProgressBy(1);
+                update_label(6);
+            }
+        });
+        //set up click action for water subtract button
+        subtractButtons[6].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(water_progress.getProgress() > 0) {
+                    water_progress.incrementProgressBy(-1);
+                    subtractlabel(6);
+                }
+            }
+        });
+
         //sets the pyramid to blank before filling it using values in shared preferences
         reset_pyramid();
+
         //set up values of number labels beside each pyramid bar
         for(int i = 0; i < ptext.length; i++) {
             ptext[i] = sharedPref.getInt(foodTypes[i], 0);
@@ -98,9 +203,18 @@ public class Pyramid extends AppCompatActivity {
 
         }
         //sets up each bar of pyramid based on values in shared preferences
-        for(int i = 0; i < ptext.length; i++) {
+        for(int i = 0; i < ptext.length - 1; i++) {
             set_bar(i);
         }
+
+
+        for(int i = 0; i < NUMBER_OF_SECTIONS; i++){
+
+        }
+        water_progress.setProgress(ptext[6]);
+
+
+
         //set up reset button
         reset = (Button) findViewById(R.id.reset);
         reset.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +223,8 @@ public class Pyramid extends AppCompatActivity {
                 for(int i = 0; i < foodTypes.length; i++){
                     editor.remove(foodTypes[i]);
                 }
+                editor.remove("calories");
+                caloriesLabel.setText("Calories: " + 0);
                 //editor.clear();           //uncomment if you want reset button to reset all
                 //                          //sharedPreferences
                 editor.commit();
@@ -116,17 +232,23 @@ public class Pyramid extends AppCompatActivity {
 
             }
         });
+        int cal = sharedPref.getInt("calories",0);
+        caloriesLabel.setText("Calories: " + Integer.toString(cal));
+
 
     }
 
     //Increments the number of a certain food group by one and updates the label on the left hand side as well as the bar
     private void update_label(int id){
         int newVal = ptext[id];
-        System.out.println("update label id = " + id + "newVal = " + newVal + " max = " + maxes[id]);
+        //System.out.println("update label id = " + id + "newVal = " + newVal + " max = " + maxes[id]);
         if(newVal < maxes[id]) {
-            foodArrays[id][newVal].setAlpha(0xFF);
+
             newVal = ++ptext[id];
-            set_bar(id);
+            if(id < 6) {
+                foodArrays[id][newVal - 1].setAlpha(0xFF);
+                set_bar(id);
+            }
             texts[id].setText(Integer.toString(newVal));
             editor.putInt(foodTypes[id],ptext[id]);
             editor.commit();
@@ -135,18 +257,22 @@ public class Pyramid extends AppCompatActivity {
         if(newVal == maxes[id]){
             texts[id].setText(Integer.toString(newVal));
             foodTypeTexts[id].setTextColor(0xFFFF0000);
-            buttons[id].setClickable(false);
+            addButtons[id].setClickable(false);
         }
+        int cal = sharedPref.getInt("calories",0);
+        caloriesLabel.setText("Calories: " + Integer.toString(cal));
 
     }
 
     //Updates one of the number labels on the left of the pyramid
     private void update_label_nonAdd(int id){
         int newVal = ptext[id];
-        //System.out.println("update label id = " + id + "newVal = " + newVal + " max = " + maxes[id]);
+        System.out.println("update label id = " + id + "newVal = " + newVal + " max = " + maxes[id]);
         if(newVal < maxes[id]) {
             //foodArrays[id][newVal].setAlpha(0xFF);
-            set_bar(id);
+            if(id < 6) {
+                set_bar(id);
+            }
             texts[id].setText(Integer.toString(newVal));
             //editor.putInt(foodTypes[id],ptext[id]);
             //editor.commit();
@@ -155,7 +281,7 @@ public class Pyramid extends AppCompatActivity {
         if(newVal == maxes[id]){
             texts[id].setText(Integer.toString(newVal));
             foodTypeTexts[id].setTextColor(0xFFFF0000);
-            buttons[id].setClickable(false);
+            addButtons[id].setClickable(false);
         }
 
     }
@@ -166,9 +292,11 @@ public class Pyramid extends AppCompatActivity {
         if(newVal > 0) {
             //foodArrays[id][newVal].setAlpha(0xFF);
             newVal = --ptext[id];
-            set_bar(id);
+            if(id < 6) {
+                set_bar(id);
+            }
             texts[id].setText(Integer.toString(newVal));
-            buttons[id].setClickable(true);
+            addButtons[id].setClickable(true);
             editor.putInt(foodTypes[id],ptext[id]);
             editor.commit();
             foodTypeTexts[id].setTextColor(0xFF000000);
@@ -176,7 +304,9 @@ public class Pyramid extends AppCompatActivity {
         }
         if(newVal == 0){
             texts[id].setText(Integer.toString(newVal));
-            set_bar(id);
+            if(id < 6) {
+                set_bar(id);
+            }
             foodTypeTexts[id].setTextColor(0xFF000000);
             subtractButtons[id].setClickable(false);
         }
@@ -219,7 +349,7 @@ public class Pyramid extends AppCompatActivity {
             }
             ptext[i] = 0;
             foodTypeTexts[i].setTextColor(0xFF000000);
-            buttons[i].setClickable(true);
+            addButtons[i].setClickable(true);
             update_label_nonAdd(i);
         }
 
