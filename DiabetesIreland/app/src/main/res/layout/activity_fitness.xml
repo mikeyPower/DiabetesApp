@@ -35,7 +35,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Add Activity:" />
+            android:text="Select Activity:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
 
         <Spinner
             android:id="@+id/spinner"
@@ -43,21 +45,90 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Input Duration of Activity (in minutes):"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/duration_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Duration (mins)"
+            android:inputType="number" />
+
         <Button
             android:id="@+id/submit_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
+            android:text="Calculate Calories Burned" />
+
+        <TextView
+            android:id="@+id/calories_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Calories Burned:"
+            android:textColor="?attr/colorControlNormal"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/add_to_tracker_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add to activity tracker" />
+
+        <LinearLayout
+            android:id="@+id/activities_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/total_cal_label"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal"
-        android:layout_alignParentTop="true">
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_weight="1"
+        android:text="Total Calories Burned Today: "
+        android:textSize="20sp" />
 
 </RelativeLayout>

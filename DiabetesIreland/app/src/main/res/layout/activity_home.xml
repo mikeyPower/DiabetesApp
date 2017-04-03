@@ -45,15 +45,16 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/triangle"
                 android:id="@+id/imageView6"
-                android:layout_weight="1"
-                tools:layout_editor_absoluteY="84dp"
-                tools:layout_editor_absoluteX="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_weight="1"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/triangle"
+                tools:layout_editor_absoluteX="2dp"
+                tools:layout_editor_absoluteY="84dp" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -78,34 +79,44 @@
                 android:layout_below="@+id/profile_button"
                 android:layout_centerHorizontal="true" />
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                app:srcCompat="@android:drawable/ic_menu_save"
-                android:id="@+id/tracker_button"
-                android:background="@android:color/transparent"
-                android:scaleX="2"
-                android:scaleY="2"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:layout_marginStart="60dp"
+                android:orientation="horizontal"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="33dp">
+
+                <ImageButton
+                    android:id="@+id/tracker_button"
+                    android:layout_width="149dp"
+                    android:layout_height="99dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/infoButton"
+                    android:background="@android:color/transparent"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    app:srcCompat="@android:drawable/ic_menu_save" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/fitness_button"
+                    android:layout_width="147dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    app:srcCompat="@android:drawable/ic_menu_myplaces" />
+            </LinearLayout>
 
         </RelativeLayout>
 
     </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/fitness_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/tracker_button"
-        android:layout_toLeftOf="@+id/profile_button"
-        android:layout_toStartOf="@+id/profile_button"
-        android:background="@android:color/transparent"
-        android:scaleX="2"
-        android:scaleY="2"
-        app:srcCompat="@android:drawable/ic_menu_myplaces" />
 
 </RelativeLayout>

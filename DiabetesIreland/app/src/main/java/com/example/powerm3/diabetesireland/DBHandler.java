@@ -252,7 +252,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String CREATE_EXERCISE_TABLE = "CREATE TABLE " + TABLE_EXERCISE + " ("
                +EXERCISE_ROW_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + EXERCISE_DURATION + " INTEGER,"
-                +EXERCISE_DATE + "TEXT,"
+                +EXERCISE_DATE + " TEXT,"
                 + EXERCISE_TOTAL_BURNED + " FLOAT,"
                 + EXERCISE_FOREIGN_ID + " INTEGER,"
                 +EXERCISE_STEPS + " INTEGER,"
@@ -342,29 +342,29 @@ public class DBHandler extends SQLiteOpenHelper {
     // Modify user info to reflect profile changes
     public void updateWeight(float newWeight) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_WEIGHT + " = " + newWeight+ "WHERE "+ USER_ID +" = "+1);
+        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_WEIGHT + " = " + newWeight+ " WHERE "+ USER_ID +" = "+1);
     }
 
     public void updateHeight(float newHeight) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_WEIGHT + " = " + newHeight+ "WHERE "+ USER_ID +" = "+1);
+        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_WEIGHT + " = " + newHeight+ " WHERE "+ USER_ID +" = "+1);
     }
 
     public void updateAge (int newAge)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_AGE + " = " + newAge+ "WHERE "+ USER_ID +" = "+1);
+        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_AGE + " = " + newAge+ " WHERE "+ USER_ID +" = "+1);
     }
 
     public void updateGender( String newGender)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_GENDER + " = " + newGender + "WHERE "+ USER_ID +" = "+1);
+        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_GENDER + " = " + newGender + " WHERE "+ USER_ID +" = "+1);
     }
     public void updateCalories( int newCalories)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_CALORIES + " = " + newCalories  + "WHERE "+ USER_ID +" = "+1);
+        db.execSQL("UPDATE " + TABLE_USER + " SET " + USER_CALORIES + " = " + newCalories  + " WHERE "+ USER_ID +" = "+1);
     }
 
 
@@ -426,26 +426,30 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
 
-    // Add excersise that isn't walking
-    public void add_excercise(String type, int duration, float burned, String date){
+    // Add exercise that isn't walking
+    public void add_exercise(String type, int duration, float burned, String date){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        int sumDuration = getExerciseDuration(date) + duration;
-        float sumBurned = getTotalExerciseBurned(date)+ burned;
-        if (recordExistsExercise(date)){
 
+        int sumDuration = 0;
+        float sumBurned = 0;
+        System.out.println("RecordExists? " + recordExistsExercise(date));
+        if (recordExistsExercise(date)){
+            sumDuration = getExerciseDuration(date) + duration;
+            sumBurned = getTotalExerciseBurned(date)+ burned;
             db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " + type + " = " + sumBurned +"," +EXERCISE_DURATION+" = "+sumDuration+ " WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
+            db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " + EXERCISE_TOTAL_BURNED + " = " + sumBurned + " WHERE " + EXERCISE_DATE + " = " + "'" +date+ "'");
         }
         else{
             String ROW1 = "INSERT INTO " + TABLE_EXERCISE  + " ("
-                    + EXERCISE_DATE +", "
-                    + EXERCISE_FOREIGN_ID+") Values ( '" +date
-                    +", "
+                    + EXERCISE_DATE +", " + EXERCISE_TOTAL_BURNED + ", "
+                    + EXERCISE_FOREIGN_ID+") Values ( '" +date + "'" + ", " + "'" +burned+ "'"
+                    +", '"
                    +1+"')";
             db.execSQL(ROW1);
 
 
-            db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " +type + " = " + sumBurned +" WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
+            db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " +type + " = " + burned +" WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
             db.close();
         }
     }
@@ -490,7 +494,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public boolean recordExistsExercise(String date){
         SQLiteDatabase sqldb = this.getReadableDatabase();
-        String Query = "Select * from " + TABLE_EXERCISE + " where " + EXERCISE_DATE + " = " + date;
+        String Query = "Select * from " + TABLE_EXERCISE + " where " + EXERCISE_DATE + " = " + "'" + date + "'";
         Cursor cursor = sqldb.rawQuery(Query, null);
         if(cursor.getCount() <= 0){
             cursor.close();
@@ -538,20 +542,33 @@ public class DBHandler extends SQLiteOpenHelper {
     {
 
         SQLiteDatabase sqldb = this.getReadableDatabase();
-        String Query = "select "+EXERCISE_DURATION+" from " + TABLE_EXERCISE+" WHERE " + EXERCISE_DATE + " = " + '"'+date+'"';
+        String Query = "select SUM("+EXERCISE_DURATION+") from " + TABLE_EXERCISE+" WHERE " + EXERCISE_DATE + " = " + '"'+date+'"';
         Cursor cursor = sqldb.rawQuery(Query, null);
-        int cnt = cursor.getInt(4);
+        cursor.moveToFirst();
+        int cnt = cursor.getInt(0);
         cursor.close();
         return cnt;
+    }
+
+    public String[] getLastFiveExercises(){
+        String[] ex = new String[5];
+
+        SQLiteDatabase sqldb = this.getReadableDatabase();
+
+
+        return null;
     }
 
         public float getTotalExerciseBurned(String date)
     {
 
         SQLiteDatabase sqldb = this.getReadableDatabase();
-        String Query = "select "+EXERCISE_TOTAL_BURNED+" from " + TABLE_EXERCISE+" WHERE " + EXERCISE_DATE + " = " + '"'+date+'"';
+        String Query = "select "+EXERCISE_TOTAL_BURNED+ " from " + TABLE_EXERCISE+" WHERE " + EXERCISE_DATE + " = " + "'" +date+"'";
+        System.out.println(Query);
         Cursor cursor = sqldb.rawQuery(Query, null);
-        float cnt = cursor.getFloat(3);
+        cursor.moveToFirst();
+        float cnt = cursor.getFloat(0);
+        System.out.println(cnt);
         cursor.close();
         return cnt;
     }
@@ -563,7 +580,9 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase sqldb = this.getReadableDatabase();
         String Query = "select "+FOOD_CALORIES+" from " + TABLE_FOOD+" WHERE " + FOOD_DATE + " = " + '"'+date+'"';
         Cursor cursor = sqldb.rawQuery(Query, null);
-        int cnt = cursor.getInt(3);
+        cursor.moveToFirst();
+        int cnt = cursor.getInt(0);
+
         cursor.close();
         return cnt;
     }
