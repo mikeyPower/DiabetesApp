@@ -38,6 +38,7 @@ public class Home extends AppCompatActivity {
     int steps;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

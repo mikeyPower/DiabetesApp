@@ -47,6 +47,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String  FOOD_PROTEIN = "PROTEIN";
     public static final String FOOD_DAIRY = "DAIRY_INTAKE";
     public static final String FOOD_FRUIT_VEG = "FRUIT_VEG";
+    public static final String FOOD_FAT = "FAT";
     public static final String FOOD_CARBS = "CARBOHYDRATE";
     public static final String FOOD_ALCOHOL = "ALCOHOL";
     public static final String FOOD_WATER = "WATER";
@@ -237,6 +238,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 +FOOD_FOREIGN_ID + " INTEGER,"
                 +FOOD_DATE + " TEXT,"
                 +FOOD_CALORIES + " INTEGER,"
+                +FOOD_FAT + " INTEGER,"
                 +FOOD_PROTEIN  + " INTEGER,"
                 + FOOD_WATER + " INTEGER,"
                 + FOOD_ALCOHOL + " INTEGER,"
@@ -375,21 +377,27 @@ public class DBHandler extends SQLiteOpenHelper {
     public void updateDailyFood(int calSize, String type, int amount, String date) {
         // currently only updating current day's data
         SQLiteDatabase db = this.getWritableDatabase();
-        int sumCalorie = getTotalCalorie(date) + calSize;
+        int sumCalorie = 0;
+        System.out.println("Record Exists Food? " + recordExistsFood(date) + " Sum to add = " + calSize);
+
         if (recordExistsFood(date)){
+            sumCalorie =  getTotalCalorie(date) + calSize;
             db.execSQL("UPDATE " +  TABLE_FOOD+ " SET " + type + " = " +  amount +","+ FOOD_CALORIES + " = "+sumCalorie+ " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
         }
         else{
 
             String ROW1 = "INSERT INTO " + TABLE_FOOD  + " ("
                     +FOOD_DATE + ","
-                    +FOOD_FOREIGN_ID
-                    +") Values ( '" +date
-                    +", "+1+"')";
+                    + FOOD_CALORIES+ "," +  FOOD_FOREIGN_ID
+                    + ") Values ('" +date + "'"
+                    +", '" +calSize + "'," + "'"  +1+ "'" + ")";
+            System.out.println(ROW1);
             db.execSQL(ROW1);
 
 
-            db.execSQL("UPDATE " +  TABLE_FOOD+ " SET " + type + " = " +  amount +","+ FOOD_CALORIES + " = "+calSize+ " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
+            db.execSQL("UPDATE " +  TABLE_FOOD+ " SET " + type + " = " +  amount +","+ FOOD_CALORIES + " = "+calSize+ " WHERE " + FOOD_DATE + " = " + "'"+date+"'");
+
+
             db.close();
 
         }
@@ -433,7 +441,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         int sumDuration = 0;
         float sumBurned = 0;
-        System.out.println("RecordExists? " + recordExistsExercise(date));
+        //System.out.println("RecordExists? " + recordExistsExercise(date));
         if (recordExistsExercise(date)){
             sumDuration = getExerciseDuration(date) + duration;
             sumBurned = getTotalExerciseBurned(date)+ burned;
@@ -506,7 +514,8 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public boolean recordExistsFood(String date){
         SQLiteDatabase sqldb = this.getReadableDatabase();
-        String Query = "Select * from " + TABLE_FOOD + " where " + FOOD_DATE + " = " + date;
+        String Query = "Select * from " + TABLE_FOOD + " where " + FOOD_DATE + " = " + "'" +date+ "'";
+        System.out.println(Query);
         Cursor cursor = sqldb.rawQuery(Query, null);
         if(cursor.getCount() <= 0){
             cursor.close();
@@ -578,7 +587,7 @@ public class DBHandler extends SQLiteOpenHelper {
     {
 
         SQLiteDatabase sqldb = this.getReadableDatabase();
-        String Query = "select "+FOOD_CALORIES+" from " + TABLE_FOOD+" WHERE " + FOOD_DATE + " = " + '"'+date+'"';
+        String Query = "select "+FOOD_CALORIES+" from " + TABLE_FOOD+" WHERE " + FOOD_DATE + " = " + "'" +date+"'";
         Cursor cursor = sqldb.rawQuery(Query, null);
         cursor.moveToFirst();
         int cnt = cursor.getInt(0);

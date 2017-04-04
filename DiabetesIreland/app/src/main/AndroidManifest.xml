@@ -6,13 +6,16 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
-    <uses-feature
-        android:name="@string/step_detector" android:required="false"/>
 
     <uses-feature
-        android:name="@string/step_counter" android:required="false"/>
-
-    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
+        android:name="@string/step_detector"
+        android:required="false" />
+    <uses-feature
+        android:name="@string/step_counter"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -23,6 +26,7 @@
         <activity android:name=".Registration">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -31,11 +35,13 @@
         <activity android:name=".Information" />
         <activity android:name=".Pyramid" />
         <activity android:name=".Fitness" />
-        <activity android:name=".Profile"/>
+        <activity android:name=".Profile" />
+
         <service
-            android:name="com.example.powerm3.diabetesireland.SensorService"
-            android:enabled="true">
-        </service>
+            android:name=".SensorService"
+            android:enabled="true"></service>
+
+        <activity android:name=".graph"></activity>
     </application>
 
 </manifest>

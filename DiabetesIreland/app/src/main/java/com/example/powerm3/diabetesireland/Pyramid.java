@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
 public class Pyramid extends AppCompatActivity {
 
     final int NUMBER_OF_SECTIONS = 7;
@@ -37,7 +39,23 @@ public class Pyramid extends AppCompatActivity {
     TextView caloriesLabel;
     ProgressBar water_progress;
     int [][] calNumbers;
+    String[] sqlnames;
+    private String date;
+    private int day;
+    private int month;
+    private int year;
 
+    public static final String  FOOD_PROTEIN = "PROTEIN";
+    public static final String FOOD_DAIRY = "DAIRY_INTAKE";
+    public static final String FOOD_FRUIT_VEG = "FRUIT_VEG";
+    public static final String FOOD_CARBS = "CARBOHYDRATE";
+    public static final String FOOD_FAT = "FAT";
+    public static final String FOOD_WATER = "WATER";
+    public static final String FOOD_THREATS = "TREATS";
+    public static final String FOOD_DATE = "DATE";
+    public static final String FOOD_CALORIES = "CAL";
+
+    DBHandler db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -56,6 +74,8 @@ public class Pyramid extends AppCompatActivity {
         addButtons = new ImageButton[NUMBER_OF_SECTIONS];
         foodTypeTexts = new TextView[NUMBER_OF_SECTIONS];
         subtractButtons = new ImageButton[NUMBER_OF_SECTIONS];
+        sqlnames = new String[]{FOOD_FRUIT_VEG,FOOD_CARBS,FOOD_DAIRY,FOOD_PROTEIN,FOOD_FAT,FOOD_THREATS};
+        db = new DBHandler(context);
         calNumbers = new int[][]{
                 { 0 },
                 { 0 },
@@ -141,8 +161,13 @@ public class Pyramid extends AppCompatActivity {
                             String putString = "calVal" + j + "-" + (ptext[j] - 1);
                             editor.putInt(putString,send);
                             editor.commit();
+
+
+                            db.updateDailyFood(send,sqlnames[j],1,getDate());
+
+
                             int cal = sharedPref.getInt("calories",0);
-                            caloriesLabel.setText("Calories: " + Integer.toString(cal));
+                            caloriesLabel.setText("Calories: " + db.getTotalCalorie(getDate()));
                         }
 
 
@@ -166,10 +191,13 @@ public class Pyramid extends AppCompatActivity {
                     subtractlabel(j);
                     int cal = sharedPref.getInt("calories", 0);
                     cal -= calNumbers[j][ptext[j]];
+                    int subtractor = calNumbers[j][ptext[j]];
                     calNumbers[j][ptext[j]] = 0;
                     editor.putInt("calories",cal);
                     editor.commit();
-                    caloriesLabel.setText("Calories: " + Integer.toString(cal));
+                    subtractor *= -1;
+                    db.updateDailyFood(subtractor,sqlnames[j],1,getDate());
+                    caloriesLabel.setText("Calories: " + db.getTotalCalorie(getDate()));
                 }
             });
         }
@@ -234,8 +262,16 @@ public class Pyramid extends AppCompatActivity {
 
             }
         });
+        if(!db.recordExistsFood(getDate())){
+            reset_pyramid();
+        }
         int cal = sharedPref.getInt("calories",0);
-        caloriesLabel.setText("Calories: " + Integer.toString(cal));
+        if(db.recordExistsFood(getDate())){
+            caloriesLabel.setText("Calories: " + db.getTotalCalorie(getDate()));
+        }else{
+            caloriesLabel.setText("Calories: " + cal);
+        }
+
 
 
     }
@@ -262,7 +298,12 @@ public class Pyramid extends AppCompatActivity {
             addButtons[id].setClickable(false);
         }
         int cal = sharedPref.getInt("calories",0);
-        caloriesLabel.setText("Calories: " + Integer.toString(cal));
+        if(db.recordExistsFood(getDate())){
+            caloriesLabel.setText("Calories: " + db.getTotalCalorie(getDate()));
+        }else{
+            caloriesLabel.setText("Calories: " + cal);
+        }
+
 
     }
 
@@ -357,6 +398,17 @@ public class Pyramid extends AppCompatActivity {
 
 
 
+
+    }
+
+    private String getDate(){
+        Calendar c = Calendar.getInstance();
+        day = c.get(c.DAY_OF_MONTH);
+        month = c.get(c.MONTH);
+        year = c.get(c.YEAR);
+
+        date = (day + "-" + month + "-" + year);
+        return date;
     }
 
     //This code stops the weird transition effect when the back button is pressed on the phone

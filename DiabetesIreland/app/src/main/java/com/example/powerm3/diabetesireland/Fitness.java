@@ -144,7 +144,7 @@ public class Fitness extends AppCompatActivity  {
 
     private String getDate(){
         Calendar c = Calendar.getInstance();
-        day = c.get(c.DAY_OF_MONTH);
+        day = c.get(c.DAY_OF_MONTH) ;
         month = c.get(c.MONTH);
         year = c.get(c.YEAR);
 
