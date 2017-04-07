@@ -9,7 +9,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Environment;
+import android.util.Log;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -676,6 +681,68 @@ public class DBHandler extends SQLiteOpenHelper {
     public String getUserName(){
         SQLiteDatabase db = this.getReadableDatabase();
             return "Biplanes";
+    }
+
+    public void exportDB(){
+        Log.d("tag", "exportDB: ");
+        SQLiteDatabase sqldb = this.getReadableDatabase(); //My Database class
+        Cursor c = null;
+        try{
+            c = sqldb.rawQuery("SELECT * FROM "+ TABLE_FOOD, null);
+            int rowcount = 0;
+            int colcount = 0;
+            File sdCardDir = Environment.getExternalStorageDirectory();
+            String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+            String filename = "Diabetes Ireland " + currentDateTimeString + ".csv";
+            // the name of the file to export with
+            File saveFile = new File(sdCardDir, filename);
+            FileWriter fw = new FileWriter(saveFile, true);
+
+            BufferedWriter bw = new BufferedWriter(fw);
+            rowcount = c.getCount();
+            colcount = c.getColumnCount();
+            if (rowcount > 0) {
+                c.moveToFirst();
+
+                for (int i = 0; i < colcount; i++) {
+                    if (i != colcount - 1) {
+
+                        bw.write(c.getColumnName(i) + ",");
+
+                    } else {
+
+                        bw.write(c.getColumnName(i));
+
+                    }
+                }
+                bw.newLine();
+
+                for (int i = 0; i < rowcount; i++) {
+                    c.moveToPosition(i);
+
+                    for (int j = 0; j < colcount; j++) {
+                        if (j != colcount - 1)
+                            bw.write(c.getString(j) + ",");
+                        else
+                            bw.write(c.getString(j));
+                    }
+                    bw.newLine();
+                }
+                bw.flush();
+                bw.close();
+                //infotext.setText("Exported Successfully.");
+            }
+
+        }
+        catch (Exception ex) {
+            if (sqldb.isOpen()) {
+                sqldb.close();
+                //infotext.setText(ex.getMessage().toString());
+            }
+
+        } finally {
+
+        }
     }
 }
 
