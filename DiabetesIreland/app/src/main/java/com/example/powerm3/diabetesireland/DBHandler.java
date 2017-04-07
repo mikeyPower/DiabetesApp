@@ -444,11 +444,11 @@ public class DBHandler extends SQLiteOpenHelper {
                     +EXERCISE_TOTAL_BURNED+", "
                     +EXERCISE_STEPS+ ", "
 
-                    + EXERCISE_FOREIGN_ID+") Values ( '" +date +", "
+                    + EXERCISE_FOREIGN_ID+") Values ( '" +date +"'" + ", "
 
                     +calBurned+", "
                     +steps+", "
-                  +1+"')";
+                  +1+")";
             db.execSQL(ROW1);
 
 

@@ -57,6 +57,8 @@ public class graph extends AppCompatActivity {
         graph.setTitle("Number of Calories Burned vs Consumed \nLast Seven Days");
 
         graph.getLegendRenderer().setVisible(true);
+        graph.getLegendRenderer().setFixedPosition(10,10);
+        graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
 
         getLastSevenDaysIntake();
         getLastSevenDaysBurned();
