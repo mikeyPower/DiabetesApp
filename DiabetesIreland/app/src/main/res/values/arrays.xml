@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array
+        name="activity_names">
+        <item >"Aerobics"</item>
+        <item> "Archery"</item>
+        <item> "Backpacking/Hiking"</item>
+        <item> "Badminton"</item>
+        <item> "Basketball"</item>
+        <item> "Bowling"</item>
+        <item> "Boxing"</item>
+        <item> "Calisthenics"</item>
+        <item> "Canoeing"</item>
+        <item> "Circuit training"</item>
+        <item>"Construction"</item>
+        <item> "Cricket"</item>
+        <item> "Croquet"</item>
+        <item> "Curling"</item>
+        <item> "Cycling"</item>
+        <item> "Dancing"</item>
+        <item> "Dancing</item>
+        <item> Ballroom"</item>
+        <item> "Diving"</item>
+        <item> "Farming"</item>
+        <item> "Fencing"</item>
+        <item> "Fishing"</item>
+        <item> "Football"</item>
+        <item>"Forestry"</item>
+        <item> "Frisbee"</item>
+        <item> "Gardening"</item>
+        <item> "Golf"</item>
+        <item> "Martial arts"</item>
+        <item> "Rowing"</item>
+        <item> "Rugby"</item>
+        <item> "Skiing"</item>
+        <item> "Swimming"</item>
+        <item> "Tennis"</item>
+        <item> "Walking"</item>
+        <item>"Water polo"</item>
+        <item> "Weight lifting"</item>
+
+    </string-array>
+
+
+</resources>
