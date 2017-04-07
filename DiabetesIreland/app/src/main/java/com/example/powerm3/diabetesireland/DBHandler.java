@@ -115,9 +115,22 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String EXERCISE_TYPE_MARTIAL ="MARTIAL ARTS";
     public static final String EXERCISE_TYPE_WEIGHT ="WEIGHT LIFTING";
 
-    public static final double[] calorieInfoArray = new double [] { 6.4,7.6,8.8,10,3.45,4.1,4.7,5.4,6.8,8.2,9.5,10.8,
-            4.4,5.2,6.1,7,5.9,7,8.2,9.3,3,3.5,4.1,4.7,8.8,10.6,12.2,14,3.5,4.1,4.8,5.4,3.9,4.7,5.5,6.2,7.9,
-            9.4,10.9,12.4,5.4,6.5,7.5,8.5,4.9,5.9,6.8,7.8,2.5,2.9,3.4,3.9,3.9,4.7,5.5,6.2,7.9,9.4,10.9,12.4,
+    public static final double[] calorieInfoArray = new double [] {
+            6.4, 7.6, 8.8, 10,
+            3.45, 4.1, 4.7, 5.4,
+            6.8, 8.2, 9.5, 10.8,
+            4.4, 5.2, 6.1, 7,
+            5.9, 7, 8.2, 9.3,
+            3, 3.5, 4.1, 4.7,
+            8.8, 10.6, 12.2, 14,
+            3.5, 4.1, 4.8, 5.4,
+            3.9, 4.7, 5.5, 6.2,
+            7.9, 9.4, 10.9, 12.4,
+            5.4, 6.5, 7.5, 8.5,
+            4.9, 5.9, 6.8, 7.8,
+            2.5, 2.9, 3.4, 3.9,
+            3.9, 4.7, 5.5, 6.2,
+            7.9, 9.4, 10.9, 12.4,
             //  Dancing
             4.4
             ,  5.3
@@ -657,6 +670,7 @@ public class DBHandler extends SQLiteOpenHelper {
         System.out.println(thth);
         Cursor cursor = db.rawQuery(thth, null);
         cursor.moveToFirst();
+
         int weight = cursor.getInt(0);
         System.out.println("Weight = " + weight);
         cursor.close();
@@ -672,7 +686,7 @@ public class DBHandler extends SQLiteOpenHelper {
             weightInd = 3;
 
         //create2DArray();
-        int index = (type * 4) + weightInd;
+        int index = ((type) * 4) + weightInd;
         double burnt = calorieInfoArray[index];
         System.out.println("Burnt = " + burnt);
         burnt *= duration;
