@@ -75,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Calories Burned:"
+            android:text="Calories Burned:\n"
             android:textColor="?attr/colorControlNormal"
             android:textSize="24sp" />
 

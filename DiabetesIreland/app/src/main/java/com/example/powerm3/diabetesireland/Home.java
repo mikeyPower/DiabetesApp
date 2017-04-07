@@ -28,7 +28,7 @@ public class Home extends AppCompatActivity {
 
 
     User user;
-    ImageButton infoButton,trackerButton,profileButton, fitnessButton;
+    ImageButton infoButton,trackerButton,profileButton, fitnessButton,graphButton;
     final Context context = this;
     TextView welcomeLabel;
     SharedPreferences sharedPref;
@@ -36,6 +36,7 @@ public class Home extends AppCompatActivity {
     Intent mIntent ;
     String userName;
     int steps;
+
 
 
 
@@ -63,6 +64,7 @@ public class Home extends AppCompatActivity {
         infoButton = (ImageButton) findViewById(R.id.infoButton);
         trackerButton = (ImageButton) findViewById(R.id.tracker_button);
         fitnessButton = (ImageButton) findViewById(R.id.fitness_button);
+        graphButton = (ImageButton) findViewById(R.id.graph_button);
 
         //attach the text labels
         welcomeLabel = (TextView) findViewById(R.id.welcome_label);
@@ -85,6 +87,17 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context,Pyramid.class);
+                startActivity(intent);
+
+                overridePendingTransition(0, 0);
+            }
+        });
+
+        //Sets up graph button to change to the graph screen
+        graphButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,graph.class);
                 startActivity(intent);
 
                 overridePendingTransition(0, 0);

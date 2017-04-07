@@ -378,11 +378,11 @@ public class DBHandler extends SQLiteOpenHelper {
         // currently only updating current day's data
         SQLiteDatabase db = this.getWritableDatabase();
         int sumCalorie = 0;
-        System.out.println("Record Exists Food? " + recordExistsFood(date) + " Sum to add = " + calSize);
-
+        //System.out.println("Record Exists Food? " + recordExistsFood(date) + " Sum to add = " + calSize);
+        int a = getFoodTypeAmount(date,type) + amount;
         if (recordExistsFood(date)){
             sumCalorie =  getTotalCalorie(date) + calSize;
-            db.execSQL("UPDATE " +  TABLE_FOOD+ " SET " + type + " = " +  amount +","+ FOOD_CALORIES + " = "+sumCalorie+ " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
+            db.execSQL("UPDATE " +  TABLE_FOOD+ " SET " + type + " = " +  a +","+ FOOD_CALORIES + " = "+sumCalorie+ " WHERE " + FOOD_DATE + " = " + '"'+date+'"');
         }
         else{
 
@@ -391,7 +391,7 @@ public class DBHandler extends SQLiteOpenHelper {
                     + FOOD_CALORIES+ "," +  FOOD_FOREIGN_ID
                     + ") Values ('" +date + "'"
                     +", '" +calSize + "'," + "'"  +1+ "'" + ")";
-            System.out.println(ROW1);
+            //System.out.println(ROW1);
             db.execSQL(ROW1);
 
 
@@ -408,8 +408,28 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
        // String date = new SimpleDateFormat("dd-MM-yyyy", Locale.UK).format(new Date());
 
+
+        SQLiteDatabase sqldb = this.getReadableDatabase();
+
+
+
+
         if (recordExistsExercise(date)){
-            db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " + EXERCISE_STEPS + " = " + steps + ","+ EXERCISE_TOTAL_BURNED +" = "+calBurned+" WHERE " + EXERCISE_DATE + " = " + '"'+date+'"');
+
+            String s = "SELECT " + EXERCISE_STEPS + " FROM " + TABLE_EXERCISE + " WHERE " + EXERCISE_DATE + " = " + "'" +date+ "'";
+
+            try {
+                Cursor cursor = sqldb.rawQuery(s, null);
+                cursor.moveToFirst();
+                float accounted = cursor.getInt(0);
+                cursor.close();
+                float acc = (float) Calculate_cal(33,accounted);
+                calBurned -= accounted;
+                db.execSQL("UPDATE " + TABLE_EXERCISE + " SET " + EXERCISE_STEPS + " = " + steps + "," + EXERCISE_TOTAL_BURNED + " = " + calBurned + " WHERE " + EXERCISE_DATE + " = " + '"' + date + '"');
+                System.out.println("STEPS UPDATED!");
+            }catch(Exception e){
+                System.out.println("ERROR CAUGHT IN STEPS UPDATE");
+            }
         }
         else{
 
@@ -515,7 +535,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public boolean recordExistsFood(String date){
         SQLiteDatabase sqldb = this.getReadableDatabase();
         String Query = "Select * from " + TABLE_FOOD + " where " + FOOD_DATE + " = " + "'" +date+ "'";
-        System.out.println(Query);
+        //System.out.println(Query);
         Cursor cursor = sqldb.rawQuery(Query, null);
         if(cursor.getCount() <= 0){
             cursor.close();
@@ -550,6 +570,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public int getExerciseDuration(String date)
     {
 
+
         SQLiteDatabase sqldb = this.getReadableDatabase();
         String Query = "select SUM("+EXERCISE_DURATION+") from " + TABLE_EXERCISE+" WHERE " + EXERCISE_DATE + " = " + '"'+date+'"';
         Cursor cursor = sqldb.rawQuery(Query, null);
@@ -573,7 +594,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         SQLiteDatabase sqldb = this.getReadableDatabase();
         String Query = "select "+EXERCISE_TOTAL_BURNED+ " from " + TABLE_EXERCISE+" WHERE " + EXERCISE_DATE + " = " + "'" +date+"'";
-        System.out.println(Query);
+        //System.out.println(Query);
         Cursor cursor = sqldb.rawQuery(Query, null);
         cursor.moveToFirst();
         float cnt = cursor.getFloat(0);
@@ -582,6 +603,33 @@ public class DBHandler extends SQLiteOpenHelper {
         return cnt;
     }
 
+    public int getFoodTypeAmount(String date, String type){
+        if(recordExistsFood(date)){
+            SQLiteDatabase sqldb = this.getReadableDatabase();
+            try {
+                String query = "SELECT " + type + " FROM " + TABLE_FOOD + " WHERE " + FOOD_DATE + " = " + "'" + date + "'";
+                Cursor cursor = sqldb.rawQuery(query, null);
+                cursor.moveToFirst();
+                if (cursor.getCount() <= 0) {
+                    System.out.println("NO VALUES");
+                    return 0;
+                }else{
+                    int ret = cursor.getInt(0);
+                    System.out.println("ret = " + ret);
+                    cursor.close();
+                    return ret;
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+                return 0;
+            }
+
+        }else{
+            return 0;
+        }
+
+
+    }
 
     public int getTotalCalorie(String date)
     {
@@ -598,7 +646,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
 
-    public double Calculate_cal(int type, int duration){
+    public double Calculate_cal(int type, double duration){
         SQLiteDatabase db = this.getWritableDatabase();
         String thth = "SELECT " + USER_WEIGHT + " FROM " + TABLE_USER;
         System.out.println(thth);

@@ -59,6 +59,9 @@ public class Fitness extends AppCompatActivity  {
         activities = getResources().getStringArray(R.array.activity_names);
         textView.setText("Steps counted = " + steps);
 
+        double calsBurned = db.Calculate_cal(33,0.01 * steps);
+
+        db.stepsUpdate(steps,(float) calsBurned,getDate());
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.activity_names,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(adapter);

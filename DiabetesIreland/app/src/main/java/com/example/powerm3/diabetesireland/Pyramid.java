@@ -188,16 +188,18 @@ public class Pyramid extends AppCompatActivity {
             subtractButtons[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    subtractlabel(j);
-                    int cal = sharedPref.getInt("calories", 0);
-                    cal -= calNumbers[j][ptext[j]];
-                    int subtractor = calNumbers[j][ptext[j]];
-                    calNumbers[j][ptext[j]] = 0;
-                    editor.putInt("calories",cal);
-                    editor.commit();
-                    subtractor *= -1;
-                    db.updateDailyFood(subtractor,sqlnames[j],1,getDate());
-                    caloriesLabel.setText("Calories: " + db.getTotalCalorie(getDate()));
+                    if(ptext[j] > 0) {
+                        subtractlabel(j);
+                        int cal = sharedPref.getInt("calories", 0);
+                        cal -= calNumbers[j][ptext[j]];
+                        int subtractor = calNumbers[j][ptext[j]];
+                        calNumbers[j][ptext[j]] = 0;
+                        editor.putInt("calories", cal);
+                        editor.commit();
+                        subtractor *= -1;
+                        db.updateDailyFood(subtractor, sqlnames[j], -1, getDate());
+                        caloriesLabel.setText("Calories: " + db.getTotalCalorie(getDate()));
+                    }
                 }
             });
         }
@@ -225,8 +227,8 @@ public class Pyramid extends AppCompatActivity {
         reset_pyramid();
 
         //set up values of number labels beside each pyramid bar
-        for(int i = 0; i < ptext.length; i++) {
-            ptext[i] = sharedPref.getInt(foodTypes[i], 0);
+        for(int i = 0; i < ptext.length - 1; i++) {
+            ptext[i] = db.getFoodTypeAmount(getDate(),sqlnames[i]);
             update_label_nonAdd(i);
 
         }
@@ -265,7 +267,7 @@ public class Pyramid extends AppCompatActivity {
         if(!db.recordExistsFood(getDate())){
             reset_pyramid();
         }
-        int cal = sharedPref.getInt("calories",0);
+        int cal = 0;
         if(db.recordExistsFood(getDate())){
             caloriesLabel.setText("Calories: " + db.getTotalCalorie(getDate()));
         }else{
@@ -297,7 +299,7 @@ public class Pyramid extends AppCompatActivity {
             foodTypeTexts[id].setTextColor(0xFFFF0000);
             addButtons[id].setClickable(false);
         }
-        int cal = sharedPref.getInt("calories",0);
+        int cal = 0;
         if(db.recordExistsFood(getDate())){
             caloriesLabel.setText("Calories: " + db.getTotalCalorie(getDate()));
         }else{
@@ -310,7 +312,7 @@ public class Pyramid extends AppCompatActivity {
     //Updates one of the number labels on the left of the pyramid
     private void update_label_nonAdd(int id){
         int newVal = ptext[id];
-        System.out.println("update label id = " + id + "newVal = " + newVal + " max = " + maxes[id]);
+        //System.out.println("update label id = " + id + "newVal = " + newVal + " max = " + maxes[id]);
         if(newVal < maxes[id]) {
             //foodArrays[id][newVal].setAlpha(0xFF);
             if(id < 6) {
@@ -331,12 +333,13 @@ public class Pyramid extends AppCompatActivity {
 
     private void subtractlabel(int id){
         int newVal = ptext[id];
-        System.out.println("update label id = " + id + "newVal = " + newVal + " max = " + maxes[id]);
+        //System.out.println("update label id = " + id + "newVal = " + newVal + " max = " + maxes[id]);
         if(newVal > 0) {
             //foodArrays[id][newVal].setAlpha(0xFF);
             newVal = --ptext[id];
             if(id < 6) {
                 set_bar(id);
+
             }
             texts[id].setText(Integer.toString(newVal));
             addButtons[id].setClickable(true);
